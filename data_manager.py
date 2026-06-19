@@ -278,6 +278,7 @@ class DataManager:
                 "key": cat["key"],
                 "label": cat["label"],
                 "emoji": cat["emoji"],
+                "color": cat["color"],
                 "mastered": mastered,
                 "total": len(cat_words),
             })
