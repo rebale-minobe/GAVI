@@ -57,7 +57,7 @@ def celebrate_monster(cat_key: str):
         <div style="font-size:22px;font-weight:800;color:#58cc02;margin-top:4px;">{msg}</div>
     </div>""", unsafe_allow_html=True)
 
-APP_VERSION = "v2026-06-19.015-logo"
+APP_VERSION = "v2026-06-19.016-word"
 
 st.set_page_config(page_title="GAVI", page_icon="🌈", layout="centered", initial_sidebar_state="collapsed")
 
@@ -208,10 +208,9 @@ def choice_buttons(choices, correct, key_prefix):
 def render_home():
     logo_uri = load_svg("gavi_logo.svg", subdir="")
     if logo_uri:
-        st.markdown(f'<div style="margin:8px 0 0;"><img src="{logo_uri}" style="height:48px;" /></div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="margin:8px 0 4px;"><img src="{logo_uri}" style="height:48px;" /></div>', unsafe_allow_html=True)
     else:
         st.markdown('<div style="font-size:44px;font-weight:900;color:#6ab351;">GAVI</div>', unsafe_allow_html=True)
-    st.caption("Learn English, Enjoy the World")
     status_bar()
     # マスコット＋挨拶
     mascot = monster_img(MASCOT, size=72, cls="mascot-bounce")
@@ -238,7 +237,7 @@ def render_home():
             st.session_state.answered=False; st.session_state.page="part2"; st.rerun()
         st.divider()
 
-    st.markdown("#### Choose a category to learn")
+    st.markdown("#### ❶ WORD 単語")
 
     # カテゴリーごとにボタン色を変えるCSS
     cats = DataManager.get_category_progress()
