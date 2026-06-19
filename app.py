@@ -16,7 +16,7 @@ from datetime import date
 import srs_engine as srs
 from data_manager import DataManager
 
-ASSET_DIR = Path(__file__).parent / "assets" / "characters"
+ASSET_DIR = Path(__file__).parent / "assets"
 
 # カテゴリー → モンスター割り当て（全て別キャラ）
 CATEGORY_MONSTER = {
@@ -30,9 +30,9 @@ CATEGORY_MONSTER = {
 MASCOT = "gavi8.svg"  # GAVIマスコット（オレンジ・舌出し）
 
 @st.cache_data
-def load_svg(filename: str) -> str:
-    """SVGファイルを読み込んでbase64データURIで返す"""
-    path = ASSET_DIR / filename
+def load_svg(filename: str, subdir: str = "characters") -> str:
+    """SVGファイルを読み込んでbase64データURIで返す。subdir=''ならassets直下"""
+    path = (ASSET_DIR / subdir / filename) if subdir else (ASSET_DIR / filename)
     if not path.exists():
         return ""
     data = path.read_bytes()
@@ -57,7 +57,7 @@ def celebrate_monster(cat_key: str):
         <div style="font-size:22px;font-weight:800;color:#58cc02;margin-top:4px;">{msg}</div>
     </div>""", unsafe_allow_html=True)
 
-APP_VERSION = "v2026-06-19.012-chars"
+APP_VERSION = "v2026-06-19.015-logo"
 
 st.set_page_config(page_title="GAVI", page_icon="🌈", layout="centered", initial_sidebar_state="collapsed")
 
@@ -206,14 +206,18 @@ def choice_buttons(choices, correct, key_prefix):
 # ホーム（カテゴリーボタン）
 # ============================================================
 def render_home():
-    st.markdown('<div style="font-size:44px;font-weight:900;background:linear-gradient(135deg,#1cb0f6,#58cc02,#ff9600);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🌈 GAVI</div>', unsafe_allow_html=True)
+    logo_uri = load_svg("gavi_logo.svg", subdir="")
+    if logo_uri:
+        st.markdown(f'<div style="margin:8px 0 0;"><img src="{logo_uri}" style="height:48px;" /></div>', unsafe_allow_html=True)
+    else:
+        st.markdown('<div style="font-size:44px;font-weight:900;color:#6ab351;">GAVI</div>', unsafe_allow_html=True)
     st.caption("Learn English, Enjoy the World")
     status_bar()
     # マスコット＋挨拶
     mascot = monster_img(MASCOT, size=72, cls="mascot-bounce")
     st.markdown(f"""<div style="display:flex;align-items:center;gap:14px;margin:8px 0;">
         {mascot}
-        <span style="font-size:26px;font-weight:800;">Hello, Ria!</span>
+        <span style="font-size:28px;font-weight:900;color:#f80;">Hello, Ria!</span>
     </div>""", unsafe_allow_html=True)
 
     today = srs.today_str()
@@ -240,7 +244,7 @@ def render_home():
     cats = DataManager.get_category_progress()
     css = "<style>"
     for c in cats:
-        css += f'div[data-cat="{c["key"]}"] + div button {{ background:{c["color"]} !important; color:white !important; border:none !important; }}'
+        css += f'div[data-cat="{c["key"]}"] + div button {{ color:#f80 !important; font-size:24px !important; font-weight:900 !important; }}'
     css += "</style>"
     st.markdown(css, unsafe_allow_html=True)
 
