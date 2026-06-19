@@ -57,7 +57,7 @@ def celebrate_monster(cat_key: str):
         <div style="font-size:22px;font-weight:800;color:#58cc02;margin-top:4px;">{msg}</div>
     </div>""", unsafe_allow_html=True)
 
-APP_VERSION = "v2026-06-19.017-logofix"
+APP_VERSION = "v2026-06-19.018-line"
 
 st.set_page_config(page_title="GAVI", page_icon="🌈", layout="centered", initial_sidebar_state="collapsed")
 
@@ -208,7 +208,7 @@ def choice_buttons(choices, correct, key_prefix):
 def render_home():
     logo_uri = load_svg("gavi_logo.svg", subdir="")
     if logo_uri:
-        st.markdown(f'<div style="margin:12px 0 4px;"><img src="{logo_uri}" style="height:48px;display:block;" /></div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="margin:12px 0 4px;"><img src="{logo_uri}" style="height:36px;display:block;" /></div>', unsafe_allow_html=True)
     else:
         st.markdown('<div style="font-size:44px;font-weight:900;color:#6ab351;">GAVI</div>', unsafe_allow_html=True)
     status_bar()
@@ -218,6 +218,7 @@ def render_home():
         {mascot}
         <span style="font-size:28px;font-weight:900;color:#f80;">Hello, Ria!</span>
     </div>""", unsafe_allow_html=True)
+    st.divider()
 
     today = srs.today_str()
     state = srs.load_state()
