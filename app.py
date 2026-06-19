@@ -57,7 +57,7 @@ def celebrate_monster(cat_key: str):
         <div style="font-size:22px;font-weight:800;color:#58cc02;margin-top:4px;">{msg}</div>
     </div>""", unsafe_allow_html=True)
 
-APP_VERSION = "v2026-06-19.008-cards"
+APP_VERSION = "v2026-06-19.009-deco"
 
 st.set_page_config(page_title="GAVI", page_icon="🌈", layout="centered", initial_sidebar_state="collapsed")
 
@@ -163,10 +163,13 @@ init_session()
 
 def status_bar():
     s = srs.get_progress_summary()
+    streak_char = monster_img("gavi6.svg", size=40)   # 赤＝連続（情熱）
+    master_char = monster_img("gavi2.svg", size=40)   # 黄＝マスター（達成）
+    exam_char = monster_img("gavi1.svg", size=40)     # 青＝試験まで
     st.markdown(f"""<div class="stat-bar">
-        <div class="stat-item"><div class="stat-value" style="color:#FF6B35;">🔥 {s['streak_current']}</div><div class="stat-label">連続日数</div></div>
-        <div class="stat-item"><div class="stat-value" style="color:#28B448;">⭐ {s['mastered']}</div><div class="stat-label">マスター</div></div>
-        <div class="stat-item"><div class="stat-value" style="color:#4A90E2;">📅 {s['days_until_exam']}</div><div class="stat-label">英検まで</div></div>
+        <div class="stat-item">{streak_char}<div class="stat-value" style="color:#FF6B35;">{s['streak_current']}</div><div class="stat-label">連続日数</div></div>
+        <div class="stat-item">{master_char}<div class="stat-value" style="color:#28B448;">{s['mastered']}</div><div class="stat-label">マスター</div></div>
+        <div class="stat-item">{exam_char}<div class="stat-value" style="color:#4A90E2;">{s['days_until_exam']}</div><div class="stat-label">英検まで</div></div>
     </div>""", unsafe_allow_html=True)
 
 
@@ -243,9 +246,10 @@ def render_home():
     for i,c in enumerate(cats):
         with cols[i%2]:
             col = c['color']
+            char = monster_img(CATEGORY_MONSTER.get(c['key'], MASCOT), size=44)
             st.markdown(f"""<div data-cat="{c['key']}" style="border-left:8px solid {col};background:white;border:2px solid #e5e5e5;border-radius:18px;padding:16px 18px;margin-bottom:6px;box-shadow:0 4px 0 #e5e5e5;">
-                <span style="font-weight:800;font-size:20px;"><span style="display:inline-block;width:22px;height:22px;border-radius:8px;background:{col};vertical-align:middle;margin-right:8px;"></span>{c['en']} <span style="font-size:14px;color:#aaa;font-weight:600;">{c['label']}</span></span>
-                <span style="float:right;color:{col};font-weight:900;font-size:20px;">{c['mastered']}/{c['total']}</span></div>""", unsafe_allow_html=True)
+                <span style="font-weight:800;font-size:20px;">{char} <span style="color:{col};">{c['en']}</span> <span style="font-size:14px;color:#aaa;font-weight:600;">{c['label']}</span></span>
+                <span style="float:right;color:{col};font-weight:900;font-size:20px;margin-top:8px;">{c['mastered']}/{c['total']}</span></div>""", unsafe_allow_html=True)
             if st.button("Go", key=f"catbtn_{c['key']}", use_container_width=True):
                 st.session_state.active_category=c['key']; st.session_state.page="category"; st.rerun()
 
@@ -336,7 +340,9 @@ def render_part1():
         for ex in word.get('examples',[]):
             ja = f'<div class="word-ex-ja">{ex["ja"]}</div>' if st.session_state.show_ja else ""
             ex_html+=f'<div class="word-ex">{ex["en"]}{ja}</div>'
-        st.markdown(f"""<div class="word-card" style="border-color:{col};">
+        char = monster_img(CATEGORY_MONSTER.get(cat_key, MASCOT), size=64, cls="mascot-bounce")
+        st.markdown(f"""<div class="word-card" style="border-color:{col};position:relative;">
+            <div style="position:absolute;top:-20px;right:20px;">{char}</div>
             <div class="word-kana">{word.get('katakana','')}</div>
             <div class="word-en">{word['english']}</div>
             <div class="word-phonetic">{word['phonetic']}</div>
