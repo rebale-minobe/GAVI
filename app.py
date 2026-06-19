@@ -14,7 +14,7 @@ from datetime import date
 import srs_engine as srs
 from data_manager import DataManager
 
-APP_VERSION = "v2026-06-19.004-duo"
+APP_VERSION = "v2026-06-19.005-duo"
 
 st.set_page_config(page_title="GAVI", page_icon="🌈", layout="centered", initial_sidebar_state="collapsed")
 
@@ -67,6 +67,7 @@ st.markdown("""
     /* ボタンを Duolingo 風に（大きく・丸く・立体・押すと沈む） */
     .stButton > button {
         font-family:'Nunito',sans-serif !important;
+        text-align:center !important; justify-content:center !important;
         font-size:18px !important; font-weight:800 !important;
         border-radius:16px !important; padding:14px 20px !important;
         border:2px solid #e5e5e5 !important;
@@ -178,9 +179,9 @@ def render_home():
         with cols[i%2]:
             col = c['color']
             st.markdown(f"""<div data-cat="{c['key']}" style="border-left:8px solid {col};background:white;border:2px solid #e5e5e5;border-radius:18px;padding:16px 18px;margin-bottom:6px;box-shadow:0 4px 0 #e5e5e5;">
-                <span style="font-weight:800;font-size:20px;">{c['emoji']} {c['en']} <span style="font-size:14px;color:#aaa;font-weight:600;">{c['label']}</span></span>
+                <span style="font-weight:800;font-size:20px;"><span style="display:inline-block;width:22px;height:22px;border-radius:8px;background:{col};vertical-align:middle;margin-right:8px;"></span>{c['en']} <span style="font-size:14px;color:#aaa;font-weight:600;">{c['label']}</span></span>
                 <span style="float:right;color:{col};font-weight:900;font-size:20px;">{c['mastered']}/{c['total']}</span></div>""", unsafe_allow_html=True)
-            if st.button(f"Learn {c['en']} →", key=f"catbtn_{c['key']}", use_container_width=True):
+            if st.button("Go", key=f"catbtn_{c['key']}", use_container_width=True):
                 st.session_state.active_category=c['key']; st.session_state.page="category"; st.rerun()
 
     st.divider()
@@ -199,7 +200,7 @@ def render_category():
     if st.button("← Back to Home"):
         st.session_state.page="home"; st.rerun()
 
-    st.markdown(f"""<h3><span class="cat-badge" style="background:{col};"></span>{cat['emoji']} {cat['en']} <span style="font-size:15px;color:#999;">{cat['label']}</span></h3>""", unsafe_allow_html=True)
+    st.markdown(f"""<h3><span style="display:inline-block;width:24px;height:24px;border-radius:8px;background:{col};vertical-align:middle;margin-right:10px;"></span>{cat['en']} <span style="font-size:16px;color:#999;">{cat['label']}</span></h3>""", unsafe_allow_html=True)
 
     words = DataManager.get_words_by_category(cat_key)
     mastered = len([w for w in words if w.get("status")=="mastered"])
