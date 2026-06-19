@@ -28,7 +28,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "オーセンティック"
     },
     {
       "word_id": "0002",
@@ -58,7 +59,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "コンプレイン"
     },
     {
       "word_id": "0003",
@@ -88,7 +90,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "アクワイア"
     },
     {
       "word_id": "0004",
@@ -118,7 +121,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "エスティメイト"
     },
     {
       "word_id": "0005",
@@ -148,7 +152,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "ディスパイト"
     },
     {
       "word_id": "0006",
@@ -178,7 +183,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "ベネフィット"
     },
     {
       "word_id": "0007",
@@ -208,7 +214,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "チャレンジ"
     },
     {
       "word_id": "0008",
@@ -238,7 +245,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "クリエイト"
     },
     {
       "word_id": "0009",
@@ -268,7 +276,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "ディターミン"
     },
     {
       "word_id": "0010",
@@ -298,7 +307,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "ディベロップ"
     },
     {
       "word_id": "0011",
@@ -328,7 +338,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "エビデンス"
     },
     {
       "word_id": "0012",
@@ -358,7 +369,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "エクスペリエンス"
     },
     {
       "word_id": "0013",
@@ -388,7 +400,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "フォーカス"
     },
     {
       "word_id": "0014",
@@ -418,7 +431,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "ファンダメンタル"
     },
     {
       "word_id": "0015",
@@ -448,7 +462,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "ジェネレイト"
     },
     {
       "word_id": "0016",
@@ -478,7 +493,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "ジェニュイン"
     },
     {
       "word_id": "0017",
@@ -508,7 +524,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "グローバル"
     },
     {
       "word_id": "0018",
@@ -538,7 +555,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "ハイライト"
     },
     {
       "word_id": "0019",
@@ -568,7 +586,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "インパクト"
     },
     {
       "word_id": "0020",
@@ -598,7 +617,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "インプルーブ"
     },
     {
       "word_id": "0021",
@@ -628,7 +648,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "リーセントリー"
     },
     {
       "word_id": "0022",
@@ -658,7 +679,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "プロバブリー"
     },
     {
       "word_id": "0023",
@@ -688,7 +710,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "アクチュアリー"
     },
     {
       "word_id": "0024",
@@ -718,7 +741,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "ルックフォワードトゥ"
     },
     {
       "word_id": "0025",
@@ -748,7 +772,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "インオーダートゥ"
     },
     {
       "word_id": "0026",
@@ -778,7 +803,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "アズウェルアズ"
     },
     {
       "word_id": "0027",
@@ -808,7 +834,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "オールゾウ"
     },
     {
       "word_id": "0028",
@@ -838,7 +865,8 @@
       "last_review_date": null,
       "review_count": 0,
       "correct_count": 0,
-      "wrong_count": 0
+      "wrong_count": 0,
+      "katakana": "ハウエバー"
     }
   ]
 }

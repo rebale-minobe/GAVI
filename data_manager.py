@@ -229,15 +229,23 @@ class DataManager:
     # カテゴリー（品詞）管理
     # ============================================================
 
-    # カテゴリー定義（表示順・ラベル・絵文字）
+    # カテゴリー定義（表示順・ラベル・絵文字・eiloカラー）
     CATEGORIES = [
-        {"key": "verb",      "label": "動詞",   "emoji": "📗"},
-        {"key": "noun",      "label": "名詞",   "emoji": "📘"},
-        {"key": "adjective", "label": "形容詞", "emoji": "📙"},
-        {"key": "adverb",    "label": "副詞",   "emoji": "📕"},
-        {"key": "idiom",     "label": "熟語",   "emoji": "🔗"},
-        {"key": "other",     "label": "その他", "emoji": "📦"},
+        {"key": "verb",      "label": "動詞",   "emoji": "📗", "color": "#E03131"},  # 赤
+        {"key": "noun",      "label": "名詞",   "emoji": "📘", "color": "#ADB5BD"},  # 薄グレー
+        {"key": "adjective", "label": "形容詞", "emoji": "📙", "color": "#4DABF7"},  # 水色
+        {"key": "adverb",    "label": "副詞",   "emoji": "📕", "color": "#4DABF7"},  # 水色（形容詞と同系）
+        {"key": "idiom",     "label": "熟語",   "emoji": "🔗", "color": "#37B24D"},  # 緑
+        {"key": "other",     "label": "その他", "emoji": "📦", "color": "#F59F00"},  # 黄
     ]
+
+    @staticmethod
+    def get_category_color(category_key: str) -> str:
+        """カテゴリーのeiloカラーを取得"""
+        for c in DataManager.CATEGORIES:
+            if c["key"] == category_key:
+                return c["color"]
+        return "#ADB5BD"
 
     @staticmethod
     def get_words_by_category(category_key: str) -> List[Dict]:

@@ -308,6 +308,24 @@ def get_calendar(year: int, month: int) -> Dict:
 # 進捗サマリー
 # ============================================================
 
+def get_word_mark(word: Dict) -> str:
+    """
+    単語の学習状態に応じたマークを返す
+    未学習 → "" / 学習中Lv1-2 → "✓" / Lv3-4 → "🔥" / マスター → "⭐"
+    """
+    status = word.get("status", "new")
+    level = word.get("srs_level", 0)
+    if status == "mastered":
+        return "⭐"
+    if word.get("learned_date") is None:
+        return ""
+    if level >= 3:
+        return "🔥"
+    if level >= 1:
+        return "✓"
+    return ""
+
+
 def get_progress_summary() -> Dict:
     """全体の進捗サマリー"""
     words = load_words()
