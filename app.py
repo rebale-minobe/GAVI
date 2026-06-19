@@ -57,7 +57,7 @@ def celebrate_monster(cat_key: str):
         <div style="font-size:22px;font-weight:800;color:#58cc02;margin-top:4px;">{msg}</div>
     </div>""", unsafe_allow_html=True)
 
-APP_VERSION = "v2026-06-19.007-celebrate"
+APP_VERSION = "v2026-06-19.008-cards"
 
 st.set_page_config(page_title="GAVI", page_icon="🌈", layout="centered", initial_sidebar_state="collapsed")
 
@@ -91,14 +91,14 @@ st.markdown("""
     .eilo-ja { font-size:14px; color:#777; margin-top:3px; font-weight:600; }
     .eilo-mark { position:absolute; top:8px; right:10px; font-size:18px; }
 
-    /* 学習カード（特大） */
-    .word-card { border-radius:28px; padding:44px 30px; text-align:center; color:white; margin-bottom:24px; box-shadow:0 6px 0 rgba(0,0,0,0.15); }
-    .word-kana { font-size:18px; opacity:0.9; margin-bottom:6px; font-weight:700; }
-    .word-en { font-size:54px; font-weight:900; margin-bottom:10px; letter-spacing:-1px; }
-    .word-phonetic { font-size:18px; opacity:0.9; margin-bottom:20px; font-weight:600; }
-    .word-def { font-size:22px; font-weight:800; background:rgba(0,0,0,0.18); padding:18px; border-radius:18px; margin-bottom:14px; }
-    .word-ex { font-size:15px; text-align:left; background:rgba(255,255,255,0.18); padding:14px 16px; border-radius:14px; margin-top:10px; line-height:1.7; font-weight:600; }
-    .word-ex-ja { opacity:0.85; font-size:14px; }
+    /* 学習カード（白背景・黒文字・色枠） */
+    .word-card { background:white; border-radius:28px; border:3px solid #ccc; border-top:10px solid #ccc; padding:40px 30px; text-align:center; color:#3c3c3c; margin-bottom:24px; box-shadow:0 6px 0 #e5e5e5; }
+    .word-kana { font-size:18px; color:#aaa; margin-bottom:6px; font-weight:700; }
+    .word-en { font-size:54px; font-weight:900; margin-bottom:10px; letter-spacing:-1px; color:#3c3c3c; }
+    .word-phonetic { font-size:18px; color:#888; margin-bottom:20px; font-weight:600; }
+    .word-def { font-size:22px; font-weight:800; color:#3c3c3c; background:#f7f7f7; padding:18px; border-radius:18px; margin-bottom:14px; }
+    .word-ex { font-size:15px; text-align:left; color:#3c3c3c; background:#f7f7f7; padding:14px 16px; border-radius:14px; margin-top:10px; line-height:1.7; font-weight:600; }
+    .word-ex-ja { color:#888; font-size:14px; }
 
     /* ミッションカード */
     .mission-card { background:white; border:2px solid #e5e5e5; border-radius:20px; padding:22px; margin-bottom:14px; box-shadow:0 4px 0 #e5e5e5; }
@@ -112,11 +112,13 @@ st.markdown("""
         font-family:'Nunito',sans-serif !important;
         text-align:center !important; justify-content:center !important;
         font-size:18px !important; font-weight:800 !important;
-        border-radius:16px !important; padding:14px 20px !important;
+        color:#3c3c3c !important;
+        border-radius:16px !important; padding:18px 20px !important;
         border:2px solid #e5e5e5 !important;
         box-shadow:0 4px 0 #e5e5e5 !important;
         transition:all 0.1s !important;
         letter-spacing:0.3px;
+        min-height:64px !important;
     }
     .stButton > button:active {
         transform:translateY(4px) !important;
@@ -184,6 +186,15 @@ def make_choices(word, all_words):
         if f!=correct and f not in d: d.append(f)
     ch = d+[correct]; random.shuffle(ch)
     return ch, correct
+
+def choice_buttons(choices, correct, key_prefix):
+    """4択をカードボタンで表示。選んだら(選択値)を返す。未選択ならNone"""
+    cols = st.columns(2)
+    for i, ch in enumerate(choices):
+        with cols[i % 2]:
+            if st.button(ch, key=f"{key_prefix}_{i}", use_container_width=True):
+                return ch
+    return None
 
 
 # ============================================================
@@ -325,7 +336,7 @@ def render_part1():
         for ex in word.get('examples',[]):
             ja = f'<div class="word-ex-ja">{ex["ja"]}</div>' if st.session_state.show_ja else ""
             ex_html+=f'<div class="word-ex">{ex["en"]}{ja}</div>'
-        st.markdown(f"""<div class="word-card" style="background:linear-gradient(135deg,{col},{col}cc);">
+        st.markdown(f"""<div class="word-card" style="border-color:{col};">
             <div class="word-kana">{word.get('katakana','')}</div>
             <div class="word-en">{word['english']}</div>
             <div class="word-phonetic">{word['phonetic']}</div>
@@ -357,7 +368,7 @@ def render_part1():
     word = queue[idx]
     st.progress(idx/total if total else 0)
     st.caption(f"❓ Quiz {idx+1} / {total}")
-    st.markdown(f"""<div class="word-card" style="background:linear-gradient(135deg,{col},{col}cc);">
+    st.markdown(f"""<div class="word-card" style="border-color:{col};">
         <div class="word-kana">{word.get('katakana','')}</div>
         <div class="word-en">{word['english']}</div>
         <div class="word-phonetic">{word['phonetic']}</div></div>""", unsafe_allow_html=True)
@@ -369,9 +380,9 @@ def render_part1():
     ch=st.session_state[ck]["ch"]; co=st.session_state[ck]["co"]
     st.markdown("**What does it mean?**")
     if not st.session_state.answered:
-        sel=st.radio("c",ch,key=f"p1r_{word['word_id']}_{idx}",label_visibility="collapsed")
-        if st.button("Answer",use_container_width=True,type="primary"):
-            st.session_state.answered=True; st.session_state.last_correct=(sel==co); st.rerun()
+        chosen = choice_buttons(ch, co, f"p1b_{word['word_id']}_{idx}")
+        if chosen is not None:
+            st.session_state.answered=True; st.session_state.last_correct=(chosen==co); st.rerun()
     else:
         if st.session_state.last_correct:
             celebrate_monster(st.session_state.active_category)
@@ -404,7 +415,7 @@ def render_part2():
     col=color_for(word.get('category','other'))
     st.progress(idx/total if total else 0)
     st.caption(f"🔁 Memory Test {idx+1} / {total}")
-    st.markdown(f"""<div class="word-card" style="background:linear-gradient(135deg,{col},{col}cc);">
+    st.markdown(f"""<div class="word-card" style="border-color:{col};">
         <div class="word-kana">{word.get('katakana','')}</div>
         <div class="word-en">{word['english']}</div>
         <div class="word-phonetic">{word['phonetic']}</div></div>""", unsafe_allow_html=True)
@@ -415,9 +426,9 @@ def render_part2():
     ch=st.session_state[ck]["ch"]; co=st.session_state[ck]["co"]
     st.markdown("**What does it mean?**")
     if not st.session_state.answered:
-        sel=st.radio("c",ch,key=f"p2r_{word['word_id']}_{idx}",label_visibility="collapsed")
-        if st.button("Answer",use_container_width=True,type="primary"):
-            st.session_state.answered=True; st.session_state.last_correct=(sel==co); st.rerun()
+        chosen = choice_buttons(ch, co, f"p2b_{word['word_id']}_{idx}")
+        if chosen is not None:
+            st.session_state.answered=True; st.session_state.last_correct=(chosen==co); st.rerun()
     else:
         if st.session_state.last_correct:
             celebrate_monster(word.get('category','other'))
