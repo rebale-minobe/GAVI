@@ -6,8 +6,14 @@
       "phonetic": "/ɔːˈθen.tɪk/",
       "definition": "本物の、本当の、信頼できる",
       "examples": [
-        "This is authentic Italian food.",
-        "She gave an authentic performance."
+        {
+          "en": "This is authentic Italian food.",
+          "ja": "これは本物のイタリア料理です。"
+        },
+        {
+          "en": "She gave an authentic performance.",
+          "ja": "彼女は本物の演技を見せた。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -15,7 +21,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "adjective"
+      "category": "adjective",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0002",
@@ -23,8 +36,14 @@
       "phonetic": "/kəmˈpleɪn/",
       "definition": "不満を言う、クレームを入れる",
       "examples": [
-        "She complained about the service.",
-        "Don't complain too much."
+        {
+          "en": "She complained about the service.",
+          "ja": "彼女はサービスについて不満を言った。"
+        },
+        {
+          "en": "Don't complain too much.",
+          "ja": "あまり文句を言わないで。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -32,7 +51,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "verb"
+      "category": "verb",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0003",
@@ -40,8 +66,14 @@
       "phonetic": "/əˈkwaɪ.ər/",
       "definition": "取得する、習得する",
       "examples": [
-        "He acquired a new skill.",
-        "She acquired knowledge through experience."
+        {
+          "en": "He acquired a new skill.",
+          "ja": "彼は新しいスキルを習得した。"
+        },
+        {
+          "en": "She acquired knowledge through experience.",
+          "ja": "彼女は経験を通じて知識を得た。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -49,7 +81,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "verb"
+      "category": "verb",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0004",
@@ -57,8 +96,14 @@
       "phonetic": "/ˈes.tə.meɪt/",
       "definition": "推定する、見積もる",
       "examples": [
-        "Let me estimate the cost.",
-        "It's estimated that 1 million people visited."
+        {
+          "en": "Let me estimate the cost.",
+          "ja": "費用を見積もらせてください。"
+        },
+        {
+          "en": "It's estimated that 1 million people visited.",
+          "ja": "100万人が訪れたと推定されている。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -66,7 +111,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "verb"
+      "category": "verb",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0005",
@@ -74,8 +126,14 @@
       "phonetic": "/dɪˈspaɪt/",
       "definition": "～にもかかわらず、～のせいで",
       "examples": [
-        "Despite the rain, they went out.",
-        "He succeeded despite many difficulties."
+        {
+          "en": "Despite the rain, they went out.",
+          "ja": "雨にもかかわらず、彼らは外出した。"
+        },
+        {
+          "en": "He succeeded despite many difficulties.",
+          "ja": "多くの困難にもかかわらず、彼は成功した。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -83,7 +141,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "other"
+      "category": "other",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0006",
@@ -91,8 +156,14 @@
       "phonetic": "/ˈben.ə.fɪt/",
       "definition": "利益、恩恵、～から利益を得る",
       "examples": [
-        "Exercise has many health benefits.",
-        "Everyone benefits from education."
+        {
+          "en": "Exercise has many health benefits.",
+          "ja": "運動には多くの健康上の利益がある。"
+        },
+        {
+          "en": "Everyone benefits from education.",
+          "ja": "誰もが教育から恩恵を受ける。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -100,7 +171,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "noun"
+      "category": "noun",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0007",
@@ -108,8 +186,14 @@
       "phonetic": "/ˈtʃæl.ɪndʒ/",
       "definition": "課題、挑戦、異議を唱える",
       "examples": [
-        "This is a big challenge for me.",
-        "He challenged the decision."
+        {
+          "en": "This is a big challenge for me.",
+          "ja": "これは私にとって大きな課題だ。"
+        },
+        {
+          "en": "He challenged the decision.",
+          "ja": "彼はその決定に異議を唱えた。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -117,7 +201,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "noun"
+      "category": "noun",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0008",
@@ -125,8 +216,14 @@
       "phonetic": "/kriˈeɪt/",
       "definition": "作成する、創造する",
       "examples": [
-        "She created a new design.",
-        "Artists create beautiful works."
+        {
+          "en": "She created a new design.",
+          "ja": "彼女は新しいデザインを作成した。"
+        },
+        {
+          "en": "Artists create beautiful works.",
+          "ja": "芸術家は美しい作品を創造する。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -134,7 +231,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "verb"
+      "category": "verb",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0009",
@@ -142,8 +246,14 @@
       "phonetic": "/dɪˈtɝː.mɪn/",
       "definition": "決定する、判定する",
       "examples": [
-        "We need to determine the best plan.",
-        "The test will determine your level."
+        {
+          "en": "We need to determine the best plan.",
+          "ja": "最善の計画を決める必要がある。"
+        },
+        {
+          "en": "The test will determine your level.",
+          "ja": "そのテストがあなたのレベルを判定する。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -151,7 +261,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "verb"
+      "category": "verb",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0010",
@@ -159,8 +276,14 @@
       "phonetic": "/dɪˈvel.əp/",
       "definition": "発達させる、開発する",
       "examples": [
-        "Children develop different skills.",
-        "The company develops new products."
+        {
+          "en": "Children develop different skills.",
+          "ja": "子どもはさまざまな能力を発達させる。"
+        },
+        {
+          "en": "The company develops new products.",
+          "ja": "その会社は新製品を開発する。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -168,7 +291,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "verb"
+      "category": "verb",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0011",
@@ -176,8 +306,14 @@
       "phonetic": "/ˈev.ə.dəns/",
       "definition": "証拠、証明、兆候",
       "examples": [
-        "There is no evidence to support this.",
-        "The study provides evidence of climate change."
+        {
+          "en": "There is no evidence to support this.",
+          "ja": "これを裏付ける証拠はない。"
+        },
+        {
+          "en": "The study provides evidence of climate change.",
+          "ja": "その研究は気候変動の証拠を示している。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -185,7 +321,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "noun"
+      "category": "noun",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0012",
@@ -193,8 +336,14 @@
       "phonetic": "/ɪkˈspɪr.i.əns/",
       "definition": "経験、体験、～を経験する",
       "examples": [
-        "He has 10 years of experience.",
-        "She experienced great success."
+        {
+          "en": "He has 10 years of experience.",
+          "ja": "彼には10年の経験がある。"
+        },
+        {
+          "en": "She experienced great success.",
+          "ja": "彼女は大きな成功を経験した。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -202,7 +351,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "noun"
+      "category": "noun",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0013",
@@ -210,8 +366,14 @@
       "phonetic": "/ˈfoʊ.kəs/",
       "definition": "焦点、注視、～に焦点を当てる",
       "examples": [
-        "The focus of the study is education.",
-        "We need to focus on the problem."
+        {
+          "en": "The focus of the study is education.",
+          "ja": "その研究の焦点は教育だ。"
+        },
+        {
+          "en": "We need to focus on the problem.",
+          "ja": "私たちはその問題に集中する必要がある。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -219,7 +381,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "noun"
+      "category": "noun",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0014",
@@ -227,8 +396,14 @@
       "phonetic": "/ˌfʌn.dəˈmen.təl/",
       "definition": "基本的な、基礎的な",
       "examples": [
-        "Math is fundamental to science.",
-        "This is a fundamental principle."
+        {
+          "en": "Math is fundamental to science.",
+          "ja": "数学は科学の基礎だ。"
+        },
+        {
+          "en": "This is a fundamental principle.",
+          "ja": "これは基本的な原則だ。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -236,7 +411,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "adjective"
+      "category": "adjective",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0015",
@@ -244,8 +426,14 @@
       "phonetic": "/ˈdʒen.ə.reɪt/",
       "definition": "生成する、発生させる",
       "examples": [
-        "The solar panel generates electricity.",
-        "This idea generated a lot of interest."
+        {
+          "en": "The solar panel generates electricity.",
+          "ja": "ソーラーパネルは電気を生成する。"
+        },
+        {
+          "en": "This idea generated a lot of interest.",
+          "ja": "このアイデアは大きな関心を生んだ。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -253,7 +441,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "verb"
+      "category": "verb",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0016",
@@ -261,8 +456,14 @@
       "phonetic": "/ˈdʒen.ju.ɪn/",
       "definition": "本物の、本当の、誠実な",
       "examples": [
-        "This is a genuine leather bag.",
-        "His concern seemed genuine."
+        {
+          "en": "This is a genuine leather bag.",
+          "ja": "これは本物の革のバッグだ。"
+        },
+        {
+          "en": "His concern seemed genuine.",
+          "ja": "彼の心配は誠実なものに見えた。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -270,7 +471,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "adjective"
+      "category": "adjective",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0017",
@@ -278,8 +486,14 @@
       "phonetic": "/ˈɡloʊ.bəl/",
       "definition": "世界的な、全世界的な",
       "examples": [
-        "Climate change is a global issue.",
-        "She has a global perspective."
+        {
+          "en": "Climate change is a global issue.",
+          "ja": "気候変動は世界的な問題だ。"
+        },
+        {
+          "en": "She has a global perspective.",
+          "ja": "彼女は世界的な視点を持っている。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -287,7 +501,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "adjective"
+      "category": "adjective",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0018",
@@ -295,8 +516,14 @@
       "phonetic": "/ˈhaɪ.laɪt/",
       "definition": "強調する、最高の部分、～を強調する",
       "examples": [
-        "This highlights the importance of education.",
-        "The yellow highlight marks important points."
+        {
+          "en": "This highlights the importance of education.",
+          "ja": "これは教育の重要性を強調している。"
+        },
+        {
+          "en": "The yellow highlight marks important points.",
+          "ja": "黄色いハイライトが重要な点を示している。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -304,7 +531,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "verb"
+      "category": "verb",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0019",
@@ -312,8 +546,14 @@
       "phonetic": "/ˈɪm.pækt/",
       "definition": "影響、衝撃、～に影響を与える",
       "examples": [
-        "The news had a big impact on him.",
-        "Technology impacts our daily lives."
+        {
+          "en": "The news had a big impact on him.",
+          "ja": "そのニュースは彼に大きな影響を与えた。"
+        },
+        {
+          "en": "Technology impacts our daily lives.",
+          "ja": "テクノロジーは私たちの日常生活に影響を与える。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -321,7 +561,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "noun"
+      "category": "noun",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0020",
@@ -329,8 +576,14 @@
       "phonetic": "/ɪmˈpruːv/",
       "definition": "改善する、上達する",
       "examples": [
-        "We need to improve our service.",
-        "His English has improved a lot."
+        {
+          "en": "We need to improve our service.",
+          "ja": "私たちはサービスを改善する必要がある。"
+        },
+        {
+          "en": "His English has improved a lot.",
+          "ja": "彼の英語はとても上達した。"
+        }
       ],
       "status": "new",
       "phase": 1,
@@ -338,7 +591,14 @@
       "translation_attempts": 0,
       "incorrect_count": 0,
       "created_date": "2026-06-19T00:00:00Z",
-      "category": "verb"
+      "category": "verb",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0021",
@@ -346,8 +606,14 @@
       "phonetic": "/ˈriː.sənt.li/",
       "definition": "最近、近頃",
       "examples": [
-        "I recently moved to Tokyo.",
-        "She has recently started a new job."
+        {
+          "en": "I recently moved to Tokyo.",
+          "ja": "私は最近、東京に引っ越した。"
+        },
+        {
+          "en": "She has recently started a new job.",
+          "ja": "彼女は最近、新しい仕事を始めた。"
+        }
       ],
       "category": "adverb",
       "status": "new",
@@ -355,7 +621,14 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0022",
@@ -363,8 +636,14 @@
       "phonetic": "/ˈprɒb.ə.bli/",
       "definition": "おそらく、たぶん",
       "examples": [
-        "It will probably rain tomorrow.",
-        "He is probably at home now."
+        {
+          "en": "It will probably rain tomorrow.",
+          "ja": "明日はおそらく雨が降るだろう。"
+        },
+        {
+          "en": "He is probably at home now.",
+          "ja": "彼はおそらく今、家にいる。"
+        }
       ],
       "category": "adverb",
       "status": "new",
@@ -372,7 +651,14 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0023",
@@ -380,8 +666,14 @@
       "phonetic": "/ˈæk.tʃu.ə.li/",
       "definition": "実際は、本当は",
       "examples": [
-        "Actually, I disagree with you.",
-        "It's actually quite simple."
+        {
+          "en": "Actually, I disagree with you.",
+          "ja": "実は、私はあなたに反対だ。"
+        },
+        {
+          "en": "It's actually quite simple.",
+          "ja": "それは実はとても簡単だ。"
+        }
       ],
       "category": "adverb",
       "status": "new",
@@ -389,7 +681,14 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0024",
@@ -397,8 +696,14 @@
       "phonetic": "/lʊk ˈfɔːr.wərd tuː/",
       "definition": "～を楽しみに待つ",
       "examples": [
-        "I look forward to seeing you.",
-        "We look forward to your reply."
+        {
+          "en": "I look forward to seeing you.",
+          "ja": "あなたに会えるのを楽しみにしています。"
+        },
+        {
+          "en": "We look forward to your reply.",
+          "ja": "お返事を楽しみにお待ちしています。"
+        }
       ],
       "category": "idiom",
       "status": "new",
@@ -406,7 +711,14 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0025",
@@ -414,8 +726,14 @@
       "phonetic": "/ɪn ˈɔːr.dər tuː/",
       "definition": "～するために",
       "examples": [
-        "I study hard in order to pass.",
-        "She left early in order to catch the train."
+        {
+          "en": "I study hard in order to pass.",
+          "ja": "私は合格するために一生懸命勉強する。"
+        },
+        {
+          "en": "She left early in order to catch the train.",
+          "ja": "彼女は電車に間に合うように早く出発した。"
+        }
       ],
       "category": "idiom",
       "status": "new",
@@ -423,7 +741,14 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0026",
@@ -431,8 +756,14 @@
       "phonetic": "/æz wel æz/",
       "definition": "～と同様に、～だけでなく",
       "examples": [
-        "He speaks French as well as English.",
-        "She is kind as well as smart."
+        {
+          "en": "He speaks French as well as English.",
+          "ja": "彼は英語だけでなくフランス語も話す。"
+        },
+        {
+          "en": "She is kind as well as smart.",
+          "ja": "彼女は賢いだけでなく優しい。"
+        }
       ],
       "category": "idiom",
       "status": "new",
@@ -440,7 +771,14 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0027",
@@ -448,8 +786,14 @@
       "phonetic": "/ɔːlˈðoʊ/",
       "definition": "～だけれども、～にもかかわらず",
       "examples": [
-        "Although it was raining, we went out.",
-        "Although he is young, he is wise."
+        {
+          "en": "Although it was raining, we went out.",
+          "ja": "雨が降っていたけれど、私たちは外出した。"
+        },
+        {
+          "en": "Although he is young, he is wise.",
+          "ja": "彼は若いけれど、賢い。"
+        }
       ],
       "category": "other",
       "status": "new",
@@ -457,7 +801,14 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     },
     {
       "word_id": "0028",
@@ -465,8 +816,14 @@
       "phonetic": "/haʊˈev.ər/",
       "definition": "しかしながら、けれども",
       "examples": [
-        "It's expensive. However, it's worth it.",
-        "However, there is a problem."
+        {
+          "en": "It's expensive. However, it's worth it.",
+          "ja": "それは高い。しかし、その価値はある。"
+        },
+        {
+          "en": "However, there is a problem.",
+          "ja": "しかし、問題が一つある。"
+        }
       ],
       "category": "other",
       "status": "new",
@@ -474,7 +831,14 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "srs_level": 0,
+      "next_review_date": null,
+      "learned_date": null,
+      "last_review_date": null,
+      "review_count": 0,
+      "correct_count": 0,
+      "wrong_count": 0
     }
   ]
 }
