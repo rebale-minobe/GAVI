@@ -57,7 +57,7 @@ def celebrate_monster(cat_key: str):
         <div style="font-size:22px;font-weight:800;color:#58cc02;margin-top:4px;">{msg}</div>
     </div>""", unsafe_allow_html=True)
 
-APP_VERSION = "v2026-06-19.009-deco"
+APP_VERSION = "v2026-06-19.010-deco2"
 
 st.set_page_config(page_title="GAVI", page_icon="🌈", layout="centered", initial_sidebar_state="collapsed")
 
@@ -163,13 +163,13 @@ init_session()
 
 def status_bar():
     s = srs.get_progress_summary()
-    streak_char = monster_img("gavi6.svg", size=40)   # 赤＝連続（情熱）
-    master_char = monster_img("gavi2.svg", size=40)   # 黄＝マスター（達成）
-    exam_char = monster_img("gavi1.svg", size=40)     # 青＝試験まで
+    streak_char = monster_img("gavi6.svg", size=36)
+    master_char = monster_img("gavi2.svg", size=36)
+    exam_char = monster_img("gavi1.svg", size=36)
     st.markdown(f"""<div class="stat-bar">
-        <div class="stat-item">{streak_char}<div class="stat-value" style="color:#FF6B35;">{s['streak_current']}</div><div class="stat-label">連続日数</div></div>
-        <div class="stat-item">{master_char}<div class="stat-value" style="color:#28B448;">{s['mastered']}</div><div class="stat-label">マスター</div></div>
-        <div class="stat-item">{exam_char}<div class="stat-value" style="color:#4A90E2;">{s['days_until_exam']}</div><div class="stat-label">英検まで</div></div>
+        <div class="stat-item"><div style="display:flex;align-items:center;justify-content:center;gap:6px;">{streak_char}<span class="stat-value" style="color:#FF6B35;">{s['streak_current']}</span></div><div class="stat-label">連続日数</div></div>
+        <div class="stat-item"><div style="display:flex;align-items:center;justify-content:center;gap:6px;">{master_char}<span class="stat-value" style="color:#28B448;">{s['mastered']}</span></div><div class="stat-label">マスター</div></div>
+        <div class="stat-item"><div style="display:flex;align-items:center;justify-content:center;gap:6px;">{exam_char}<span class="stat-value" style="color:#4A90E2;">{s['days_until_exam']}</span></div><div class="stat-label">英検まで</div></div>
     </div>""", unsafe_allow_html=True)
 
 
@@ -211,7 +211,7 @@ def render_home():
     mascot = monster_img(MASCOT, size=72, cls="mascot-bounce")
     st.markdown(f"""<div style="display:flex;align-items:center;gap:14px;margin:8px 0;">
         {mascot}
-        <span style="font-size:26px;font-weight:800;">👋 Hello, Ria!</span>
+        <span style="font-size:26px;font-weight:800;">Hello, Ria!</span>
     </div>""", unsafe_allow_html=True)
 
     today = srs.today_str()
@@ -232,7 +232,7 @@ def render_home():
             st.session_state.answered=False; st.session_state.page="part2"; st.rerun()
         st.divider()
 
-    st.markdown("#### 📚 Choose a category to learn")
+    st.markdown("#### Choose a category to learn")
 
     # カテゴリーごとにボタン色を変えるCSS
     cats = DataManager.get_category_progress()
@@ -246,7 +246,7 @@ def render_home():
     for i,c in enumerate(cats):
         with cols[i%2]:
             col = c['color']
-            char = monster_img(CATEGORY_MONSTER.get(c['key'], MASCOT), size=44)
+            char = monster_img(CATEGORY_MONSTER.get(c['key'], MASCOT), size=32)
             st.markdown(f"""<div data-cat="{c['key']}" style="border-left:8px solid {col};background:white;border:2px solid #e5e5e5;border-radius:18px;padding:16px 18px;margin-bottom:6px;box-shadow:0 4px 0 #e5e5e5;">
                 <span style="font-weight:800;font-size:20px;">{char} <span style="color:{col};">{c['en']}</span> <span style="font-size:14px;color:#aaa;font-weight:600;">{c['label']}</span></span>
                 <span style="float:right;color:{col};font-weight:900;font-size:20px;margin-top:8px;">{c['mastered']}/{c['total']}</span></div>""", unsafe_allow_html=True)
