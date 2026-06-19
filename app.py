@@ -57,7 +57,7 @@ def celebrate_monster(cat_key: str):
         <div style="font-size:22px;font-weight:800;color:#58cc02;margin-top:4px;">{msg}</div>
     </div>""", unsafe_allow_html=True)
 
-APP_VERSION = "v2026-06-19.010-deco2"
+APP_VERSION = "v2026-06-19.011-deco3"
 
 st.set_page_config(page_title="GAVI", page_icon="🌈", layout="centered", initial_sidebar_state="collapsed")
 
@@ -106,6 +106,8 @@ st.markdown("""
     .mission-label { font-size:18px; font-weight:800; }
     .mission-num { font-size:24px; font-weight:900; color:#1cb0f6; }
     .cat-badge { display:inline-block; width:16px; height:16px; border-radius:5px; margin-right:8px; vertical-align:middle; }
+    /* カテゴリーキャラを高さ統一（下揃え） */
+    div[data-cat] img { max-height:42px; width:auto; object-fit:contain; }
 
     /* ボタンを Duolingo 風に（大きく・丸く・立体・押すと沈む） */
     .stButton > button {
@@ -246,10 +248,13 @@ def render_home():
     for i,c in enumerate(cats):
         with cols[i%2]:
             col = c['color']
-            char = monster_img(CATEGORY_MONSTER.get(c['key'], MASCOT), size=32)
-            st.markdown(f"""<div data-cat="{c['key']}" style="border-left:8px solid {col};background:white;border:2px solid #e5e5e5;border-radius:18px;padding:16px 18px;margin-bottom:6px;box-shadow:0 4px 0 #e5e5e5;">
-                <span style="font-weight:800;font-size:20px;">{char} <span style="color:{col};">{c['en']}</span> <span style="font-size:14px;color:#aaa;font-weight:600;">{c['label']}</span></span>
-                <span style="float:right;color:{col};font-weight:900;font-size:20px;margin-top:8px;">{c['mastered']}/{c['total']}</span></div>""", unsafe_allow_html=True)
+            char = monster_img(CATEGORY_MONSTER.get(c['key'], MASCOT), size=38)
+            st.markdown(f"""<div data-cat="{c['key']}" style="display:flex;align-items:center;padding:8px 14px;margin-bottom:2px;">
+                <div style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;margin-right:10px;">{char}</div>
+                <span style="font-weight:900;font-size:24px;color:{col};">{c['en']}</span>
+                <span style="font-size:15px;color:#aaa;font-weight:600;margin-left:6px;">{c['label']}</span>
+                <span style="margin-left:auto;color:{col};font-weight:900;font-size:22px;">{c['mastered']}/{c['total']}</span>
+            </div>""", unsafe_allow_html=True)
             if st.button("Go", key=f"catbtn_{c['key']}", use_container_width=True):
                 st.session_state.active_category=c['key']; st.session_state.page="category"; st.rerun()
 
