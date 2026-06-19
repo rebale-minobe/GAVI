@@ -1,0 +1,324 @@
+{
+  "words": [
+    {
+      "word_id": "0001",
+      "english": "authentic",
+      "phonetic": "/ɔːˈθen.tɪk/",
+      "definition": "本物の、本当の、信頼できる",
+      "examples": [
+        "This is authentic Italian food.",
+        "She gave an authentic performance."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0002",
+      "english": "complain",
+      "phonetic": "/kəmˈpleɪn/",
+      "definition": "不満を言う、クレームを入れる",
+      "examples": [
+        "She complained about the service.",
+        "Don't complain too much."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0003",
+      "english": "acquire",
+      "phonetic": "/əˈkwaɪ.ər/",
+      "definition": "取得する、習得する",
+      "examples": [
+        "He acquired a new skill.",
+        "She acquired knowledge through experience."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0004",
+      "english": "estimate",
+      "phonetic": "/ˈes.tə.meɪt/",
+      "definition": "推定する、見積もる",
+      "examples": [
+        "Let me estimate the cost.",
+        "It's estimated that 1 million people visited."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0005",
+      "english": "despite",
+      "phonetic": "/dɪˈspaɪt/",
+      "definition": "～にもかかわらず、～のせいで",
+      "examples": [
+        "Despite the rain, they went out.",
+        "He succeeded despite many difficulties."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0006",
+      "english": "benefit",
+      "phonetic": "/ˈben.ə.fɪt/",
+      "definition": "利益、恩恵、～から利益を得る",
+      "examples": [
+        "Exercise has many health benefits.",
+        "Everyone benefits from education."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0007",
+      "english": "challenge",
+      "phonetic": "/ˈtʃæl.ɪndʒ/",
+      "definition": "課題、挑戦、異議を唱える",
+      "examples": [
+        "This is a big challenge for me.",
+        "He challenged the decision."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0008",
+      "english": "create",
+      "phonetic": "/kriˈeɪt/",
+      "definition": "作成する、創造する",
+      "examples": [
+        "She created a new design.",
+        "Artists create beautiful works."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0009",
+      "english": "determine",
+      "phonetic": "/dɪˈtɝː.mɪn/",
+      "definition": "決定する、判定する",
+      "examples": [
+        "We need to determine the best plan.",
+        "The test will determine your level."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0010",
+      "english": "develop",
+      "phonetic": "/dɪˈvel.əp/",
+      "definition": "発達させる、開発する",
+      "examples": [
+        "Children develop different skills.",
+        "The company develops new products."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0011",
+      "english": "evidence",
+      "phonetic": "/ˈev.ə.dəns/",
+      "definition": "証拠、証明、兆候",
+      "examples": [
+        "There is no evidence to support this.",
+        "The study provides evidence of climate change."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0012",
+      "english": "experience",
+      "phonetic": "/ɪkˈspɪr.i.əns/",
+      "definition": "経験、体験、～を経験する",
+      "examples": [
+        "He has 10 years of experience.",
+        "She experienced great success."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0013",
+      "english": "focus",
+      "phonetic": "/ˈfoʊ.kəs/",
+      "definition": "焦点、注視、～に焦点を当てる",
+      "examples": [
+        "The focus of the study is education.",
+        "We need to focus on the problem."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0014",
+      "english": "fundamental",
+      "phonetic": "/ˌfʌn.dəˈmen.təl/",
+      "definition": "基本的な、基礎的な",
+      "examples": [
+        "Math is fundamental to science.",
+        "This is a fundamental principle."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0015",
+      "english": "generate",
+      "phonetic": "/ˈdʒen.ə.reɪt/",
+      "definition": "生成する、発生させる",
+      "examples": [
+        "The solar panel generates electricity.",
+        "This idea generated a lot of interest."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0016",
+      "english": "genuine",
+      "phonetic": "/ˈdʒen.ju.ɪn/",
+      "definition": "本物の、本当の、誠実な",
+      "examples": [
+        "This is a genuine leather bag.",
+        "His concern seemed genuine."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0017",
+      "english": "global",
+      "phonetic": "/ˈɡloʊ.bəl/",
+      "definition": "世界的な、全世界的な",
+      "examples": [
+        "Climate change is a global issue.",
+        "She has a global perspective."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0018",
+      "english": "highlight",
+      "phonetic": "/ˈhaɪ.laɪt/",
+      "definition": "強調する、最高の部分、～を強調する",
+      "examples": [
+        "This highlights the importance of education.",
+        "The yellow highlight marks important points."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0019",
+      "english": "impact",
+      "phonetic": "/ˈɪm.pækt/",
+      "definition": "影響、衝撃、～に影響を与える",
+      "examples": [
+        "The news had a big impact on him.",
+        "Technology impacts our daily lives."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0020",
+      "english": "improve",
+      "phonetic": "/ɪmˈpruːv/",
+      "definition": "改善する、上達する",
+      "examples": [
+        "We need to improve our service.",
+        "His English has improved a lot."
+      ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    }
+  ]
+}

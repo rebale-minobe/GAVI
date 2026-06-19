@@ -1,0 +1,94 @@
+{
+  "user_id": "ria_minobe",
+  "user_name": "莉亜",
+  "current_phase": 1,
+  "phase_start_date": "2026-06-18T00:00:00Z",
+  "phase_end_date": "2026-08-12T23:59:59Z",
+  "exam_date": "2026-09-27T00:00:00Z",
+  "days_until_exam": 71,
+  "statistics": {
+    "vocabulary": {
+      "new": 20,
+      "quiz_pending": 0,
+      "translation_pending": 0,
+      "mastered": 0,
+      "review_only": 0,
+      "total_words": 2600,
+      "mastered_percentage": 0.0,
+      "total_attempts": 0,
+      "accuracy": 0.0
+    },
+    "writing": {
+      "free_writing_count": 0,
+      "free_writing_avg_score": 0,
+      "polishing_count": 0,
+      "polishing_avg_score": 0,
+      "total_essays": 0
+    },
+    "reading": {
+      "practice_count": 0,
+      "avg_score": 0
+    },
+    "interview": {
+      "practice_count": 0,
+      "avg_score": 0
+    }
+  },
+  "exam_readiness": {
+    "estimated_pass_rate": 0.0,
+    "recommended_mode": "free_writing",
+    "priority_focus": "vocabulary_foundation",
+    "daily_goal_words": 15,
+    "daily_goal_writing": 2,
+    "daily_goal_reading": 1
+  },
+  "phase_schedule": {
+    "phase_1": {
+      "name": "基礎固め期",
+      "start": "2026-06-18",
+      "end": "2026-08-12",
+      "focus": [
+        "単語2600語習得",
+        "短文穴埋め習得",
+        "並べ替え問題習得",
+        "長文読解スキル習得",
+        "ライティングFree Writingで数こなし"
+      ]
+    },
+    "phase_2": {
+      "name": "実践浸漬期",
+      "start": "2026-08-13",
+      "end": "2026-08-27",
+      "focus": [
+        "オーストラリア語学留学",
+        "現地での生英語に毎日浸かる",
+        "ホームステイでスピーキング",
+        "GAVI は軽い確認のみ"
+      ]
+    },
+    "phase_3": {
+      "name": "本番対策期",
+      "start": "2026-08-28",
+      "end": "2026-09-27",
+      "focus": [
+        "過去問本番形式で時間計測",
+        "ライティングPolishingで完璧化",
+        "二次面接シミュレーション",
+        "最終調整"
+      ]
+    }
+  },
+  "personal_info": {
+    "grade": "中2",
+    "school": "横浜国際高校受験予定",
+    "target_score": 60,
+    "target_grade": "A",
+    "interests": [
+      "推し（Kpop）",
+      "ファッション",
+      "海外文化"
+    ]
+  },
+  "created_date": "2026-06-19T00:00:00Z",
+  "last_updated": "2026-06-19T00:00:00Z"
+}
