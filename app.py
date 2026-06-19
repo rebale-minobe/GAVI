@@ -46,7 +46,18 @@ def monster_img(filename: str, size: int = 80, cls: str = "") -> str:
         return ""
     return f'<img src="{uri}" width="{size}" class="{cls}" style="vertical-align:middle;" />'
 
-APP_VERSION = "v2026-06-19.006-monster"
+def celebrate_monster(cat_key: str):
+    """正解時：カテゴリー色のモンスターが跳ねて喜ぶ"""
+    fname = CATEGORY_MONSTER.get(cat_key, MASCOT)
+    img = monster_img(fname, size=100, cls="mascot-celebrate")
+    msgs = ["Great!", "Nice!", "Awesome!", "Perfect!", "Well done!", "Cool!"]
+    msg = random.choice(msgs)
+    st.markdown(f"""<div style="text-align:center;margin:10px 0;">
+        {img}
+        <div style="font-size:22px;font-weight:800;color:#58cc02;margin-top:4px;">{msg}</div>
+    </div>""", unsafe_allow_html=True)
+
+APP_VERSION = "v2026-06-19.007-celebrate"
 
 st.set_page_config(page_title="GAVI", page_icon="🌈", layout="centered", initial_sidebar_state="collapsed")
 
@@ -243,7 +254,8 @@ def render_category():
     if st.button("← Back to Home"):
         st.session_state.page="home"; st.rerun()
 
-    st.markdown(f"""<h3><span style="display:inline-block;width:24px;height:24px;border-radius:8px;background:{col};vertical-align:middle;margin-right:10px;"></span>{cat['en']} <span style="font-size:16px;color:#999;">{cat['label']}</span></h3>""", unsafe_allow_html=True)
+    cat_monster = monster_img(CATEGORY_MONSTER.get(cat_key, MASCOT), size=56, cls="mascot-bounce")
+    st.markdown(f"""<h3>{cat_monster} <span style="display:inline-block;width:24px;height:24px;border-radius:8px;background:{col};vertical-align:middle;margin-right:10px;"></span>{cat['en']} <span style="font-size:16px;color:#999;">{cat['label']}</span></h3>""", unsafe_allow_html=True)
 
     words = DataManager.get_words_by_category(cat_key)
     mastered = len([w for w in words if w.get("status")=="mastered"])
@@ -362,6 +374,7 @@ def render_part1():
             st.session_state.answered=True; st.session_state.last_correct=(sel==co); st.rerun()
     else:
         if st.session_state.last_correct:
+            celebrate_monster(st.session_state.active_category)
             st.success(f"✅ Correct! {word['definition']}")
             if st.button("Next →",use_container_width=True,type="primary"):
                 srs.mark_new_learned(word['word_id'])
@@ -407,6 +420,7 @@ def render_part2():
             st.session_state.answered=True; st.session_state.last_correct=(sel==co); st.rerun()
     else:
         if st.session_state.last_correct:
+            celebrate_monster(word.get('category','other'))
             st.success(f"✅ Correct! {word['definition']}")
             if st.button("Next →",use_container_width=True,type="primary"):
                 srs.mark_review_result(word['word_id'],True)
@@ -428,11 +442,12 @@ def render_complete():
     srs.complete_today_mission()
     s=srs.get_progress_summary()
     st.balloons()
-    st.markdown(f"""<div style="text-align:center;padding:40px 20px;">
-        <div style="font-size:64px;">🎉</div>
-        <div style="font-size:28px;font-weight:700;margin:16px 0;">Mission Complete!</div>
-        <div style="font-size:18px;color:#FF6B35;font-weight:700;">🔥 連続 {s['streak_current']}日</div>
-        <div style="font-size:16px;color:#28B448;margin-top:8px;">⭐ マスター {s['mastered']}語</div>
+    mascot = monster_img(MASCOT, size=120, cls="mascot-celebrate")
+    st.markdown(f"""<div style="text-align:center;padding:30px 20px;">
+        {mascot}
+        <div style="font-size:30px;font-weight:900;margin:16px 0;">Mission Complete!</div>
+        <div style="font-size:20px;color:#FF6B35;font-weight:800;">🔥 連続 {s['streak_current']}日</div>
+        <div style="font-size:18px;color:#28B448;margin-top:8px;font-weight:800;">⭐ マスター {s['mastered']}語</div>
     </div>""", unsafe_allow_html=True)
     st.success("Great job today!")
     if st.button("📅 Calendar",use_container_width=True):
