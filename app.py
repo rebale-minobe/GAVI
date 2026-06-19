@@ -10,11 +10,43 @@ Learn English, Enjoy the World
 
 import streamlit as st
 import random
+import base64
+from pathlib import Path
 from datetime import date
 import srs_engine as srs
 from data_manager import DataManager
 
-APP_VERSION = "v2026-06-19.005-duo"
+ASSET_DIR = Path(__file__).parent / "assets" / "characters"
+
+# カテゴリー → モンスター割り当て
+CATEGORY_MONSTER = {
+    "verb": "gavi6.svg",       # 赤
+    "noun": "gavi8.svg",       # オレンジ（グレーなしのため暫定）
+    "adjective": "gavi1.svg",  # 水色
+    "adverb": "gavi5.svg",     # 水色
+    "idiom": "gavi3.svg",      # 黄緑
+    "other": "gavi2.svg",      # 黄
+}
+MASCOT = "gavi1.svg"  # GAVIマスコット（青モンスター）
+
+@st.cache_data
+def load_svg(filename: str) -> str:
+    """SVGファイルを読み込んでbase64データURIで返す"""
+    path = ASSET_DIR / filename
+    if not path.exists():
+        return ""
+    data = path.read_bytes()
+    b64 = base64.b64encode(data).decode()
+    return f"data:image/svg+xml;base64,{b64}"
+
+def monster_img(filename: str, size: int = 80, cls: str = "") -> str:
+    """モンスター画像のHTMLを返す"""
+    uri = load_svg(filename)
+    if not uri:
+        return ""
+    return f'<img src="{uri}" width="{size}" class="{cls}" style="vertical-align:middle;" />'
+
+APP_VERSION = "v2026-06-19.006-monster"
 
 st.set_page_config(page_title="GAVI", page_icon="🌈", layout="centered", initial_sidebar_state="collapsed")
 
@@ -93,6 +125,12 @@ st.markdown("""
     /* ラジオ選択肢を大きく */
     .stRadio label { font-size:18px !important; font-weight:700 !important; }
     .stRadio > div { gap:10px !important; }
+    /* マスコットのふわふわアニメ */
+    @keyframes floaty { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+    .mascot-bounce { animation: floaty 2s ease-in-out infinite; }
+    /* 正解時に跳ねるアニメ */
+    @keyframes celebrate { 0%{transform:scale(0.5) translateY(20px);opacity:0;} 50%{transform:scale(1.15) translateY(-10px);} 70%{transform:scale(0.95);} 100%{transform:scale(1) translateY(0);opacity:1;} }
+    .mascot-celebrate { animation: celebrate 0.6s ease-out; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -144,7 +182,12 @@ def render_home():
     st.markdown('<div style="font-size:44px;font-weight:900;background:linear-gradient(135deg,#1cb0f6,#58cc02,#ff9600);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🌈 GAVI</div>', unsafe_allow_html=True)
     st.caption("Learn English, Enjoy the World")
     status_bar()
-    st.markdown("### 👋 Hello, Ria!")
+    # マスコット＋挨拶
+    mascot = monster_img(MASCOT, size=72, cls="mascot-bounce")
+    st.markdown(f"""<div style="display:flex;align-items:center;gap:14px;margin:8px 0;">
+        {mascot}
+        <span style="font-size:26px;font-weight:800;">👋 Hello, Ria!</span>
+    </div>""", unsafe_allow_html=True)
 
     today = srs.today_str()
     state = srs.load_state()
