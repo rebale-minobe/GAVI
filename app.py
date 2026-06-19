@@ -46,6 +46,50 @@ def monster_img(filename: str, size: int = 80, cls: str = "") -> str:
         return ""
     return f'<img src="{uri}" width="{size}" class="{cls}" style="vertical-align:middle;" />'
 
+AUDIO_DIR = Path(__file__).parent / "assets" / "audio"
+
+@st.cache_data
+def load_audio_uri(word_id: str) -> str:
+    """単語IDのmp3を読み込んでbase64データURIで返す。なければ空"""
+    path = AUDIO_DIR / f"{word_id}.mp3"
+    if not path.exists():
+        return ""
+    b64 = base64.b64encode(path.read_bytes()).decode()
+    return f"data:audio/mp3;base64,{b64}"
+
+def play_audio(word_id: str, autoplay: bool = False):
+    """単語の発音を再生するaudioタグを埋め込む"""
+    uri = load_audio_uri(word_id)
+    if not uri:
+        return
+    auto = "autoplay" if autoplay else ""
+    st.markdown(
+        f'<audio {auto} controls style="width:100%;height:40px;">'
+        f'<source src="{uri}" type="audio/mp3"></audio>',
+        unsafe_allow_html=True
+    )
+
+SOUNDS_DIR = Path(__file__).parent / "assets" / "sounds"
+
+@st.cache_data
+def load_sound_uri(name: str) -> str:
+    """効果音mp3をbase64データURIで返す。なければ空"""
+    path = SOUNDS_DIR / f"{name}.mp3"
+    if not path.exists():
+        return ""
+    b64 = base64.b64encode(path.read_bytes()).decode()
+    return f"data:audio/mp3;base64,{b64}"
+
+def play_sound(name: str):
+    """効果音を自動再生（correct / wrong / pass / fail）"""
+    uri = load_sound_uri(name)
+    if not uri:
+        return
+    st.markdown(
+        f'<audio autoplay style="display:none;"><source src="{uri}" type="audio/mp3"></audio>',
+        unsafe_allow_html=True
+    )
+
 def celebrate_monster(cat_key: str):
     """正解時：カテゴリー色のモンスターが跳ねて喜ぶ"""
     fname = CATEGORY_MONSTER.get(cat_key, MASCOT)
@@ -57,7 +101,7 @@ def celebrate_monster(cat_key: str):
         <div style="font-size:22px;font-weight:800;color:#58cc02;margin-top:4px;">{msg}</div>
     </div>""", unsafe_allow_html=True)
 
-APP_VERSION = "v2026-06-19.018-line"
+APP_VERSION = "v2026-06-19.020-sound"
 
 st.set_page_config(page_title="GAVI", page_icon="🌈", layout="centered", initial_sidebar_state="collapsed")
 
@@ -358,6 +402,8 @@ def render_part1():
             <div class="word-def">{word['definition']}</div>
             {ex_html}
         </div>""", unsafe_allow_html=True)
+        # 発音プレーヤー
+        play_audio(word['word_id'])
         c1,c2 = st.columns(2)
         with c1:
             st.session_state.show_ja = st.toggle("Show translation", value=st.session_state.show_ja)
@@ -400,6 +446,7 @@ def render_part1():
             st.session_state.answered=True; st.session_state.last_correct=(chosen==co); st.rerun()
     else:
         if st.session_state.last_correct:
+            play_sound("correct")
             celebrate_monster(st.session_state.active_category)
             st.success(f"✅ Correct! {word['definition']}")
             if st.button("Next →",use_container_width=True,type="primary"):
@@ -407,6 +454,7 @@ def render_part1():
                 del st.session_state[ck]; st.session_state.part1_index+=1
                 st.session_state.answered=False; st.rerun()
         else:
+            play_sound("wrong")
             st.error(f"❌ Wrong. Answer: {co}")
             if st.button("Retry",use_container_width=True):
                 if word not in st.session_state.part1_wrong: st.session_state.part1_wrong.append(word)
@@ -446,6 +494,7 @@ def render_part2():
             st.session_state.answered=True; st.session_state.last_correct=(chosen==co); st.rerun()
     else:
         if st.session_state.last_correct:
+            play_sound("correct")
             celebrate_monster(word.get('category','other'))
             st.success(f"✅ Correct! {word['definition']}")
             if st.button("Next →",use_container_width=True,type="primary"):
@@ -453,6 +502,7 @@ def render_part2():
                 del st.session_state[ck]; st.session_state.part2_index+=1
                 st.session_state.answered=False; st.rerun()
         else:
+            play_sound("wrong")
             st.error(f"❌ Wrong. Answer: {co}")
             if st.button("Retry →",use_container_width=True):
                 srs.mark_review_result(word['word_id'],False)
@@ -467,6 +517,7 @@ def render_part2():
 def render_complete():
     srs.complete_today_mission()
     s=srs.get_progress_summary()
+    play_sound("pass")
     st.balloons()
     mascot = monster_img(MASCOT, size=120, cls="mascot-celebrate")
     st.markdown(f"""<div style="text-align:center;padding:30px 20px;">
