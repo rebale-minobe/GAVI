@@ -45,6 +45,9 @@ st.markdown("""
     .mission-label { font-size:15px; font-weight:600; }
     .mission-num { font-size:20px; font-weight:700; color:#4A90E2; }
     .cat-badge { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:middle; }
+    /* primary buttonをGAVI青に統一 */
+    .stButton > button[kind="primary"] { background:#4A90E2; border:none; }
+    .stButton > button[kind="primary"]:hover { background:#357ABD; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -102,34 +105,42 @@ def render_home():
     state = srs.load_state()
     done = state["daily_log"].get(today,{}).get("completed",False)
     if done:
-        st.success("🎉 今日のミッション完了！また明日ね！")
+        st.success("🎉 Mission Complete! See you tomorrow!")
 
     # 記憶テスト（全カテゴリー混在）
     mission = srs.get_today_mission_by_categories(["verb","noun","adjective","adverb","idiom","other"])
     if mission['review_count']>0:
         st.markdown(f"""<div class="mission-card"><div class="mission-row">
-            <span class="mission-label">🔁 今日の記憶テスト</span>
-            <span class="mission-num">{mission['review_count']}語</span></div></div>""", unsafe_allow_html=True)
-        if st.button("🔁 記憶テストをやる", use_container_width=True, type="primary"):
+            <span class="mission-label">🔁 Memory Test</span>
+            <span class="mission-num">{mission['review_count']} words</span></div></div>""", unsafe_allow_html=True)
+        if st.button("🔁 Start Memory Test", use_container_width=True, type="primary"):
             st.session_state.part2_queue=list(mission['review_words'])
             st.session_state.part2_index=0; st.session_state.part2_wrong=[]
             st.session_state.answered=False; st.session_state.page="part2"; st.rerun()
         st.divider()
 
-    st.markdown("#### 📚 カテゴリーを選んで新しい単語を覚えよう")
+    st.markdown("#### 📚 Choose a category to learn")
+
+    # カテゴリーごとにボタン色を変えるCSS
     cats = DataManager.get_category_progress()
+    css = "<style>"
+    for c in cats:
+        css += f'div[data-cat="{c["key"]}"] + div button {{ background:{c["color"]} !important; color:white !important; border:none !important; }}'
+    css += "</style>"
+    st.markdown(css, unsafe_allow_html=True)
+
     cols = st.columns(2)
     for i,c in enumerate(cats):
         with cols[i%2]:
             col = c['color']
-            st.markdown(f"""<div style="border-left:5px solid {col};background:white;border:1px solid #eee;border-radius:10px;padding:10px 14px;margin-bottom:4px;">
-                <span style="font-weight:600;">{c['emoji']} {c['label']}</span>
+            st.markdown(f"""<div data-cat="{c['key']}" style="border-left:5px solid {col};background:white;border:1px solid #eee;border-radius:10px;padding:10px 14px;margin-bottom:4px;">
+                <span style="font-weight:600;">{c['emoji']} {c['en']} <span style="font-size:12px;color:#999;">{c['label']}</span></span>
                 <span style="float:right;color:{col};font-weight:700;">{c['mastered']}/{c['total']}</span></div>""", unsafe_allow_html=True)
-            if st.button(f"{c['label']}を学ぶ →", key=f"catbtn_{c['key']}", use_container_width=True):
+            if st.button(f"Learn {c['en']} →", key=f"catbtn_{c['key']}", use_container_width=True):
                 st.session_state.active_category=c['key']; st.session_state.page="category"; st.rerun()
 
     st.divider()
-    if st.button("📅 カレンダー", use_container_width=True):
+    if st.button("📅 Calendar", use_container_width=True):
         st.session_state.page="calendar"; st.rerun()
 
 
@@ -141,23 +152,42 @@ def render_category():
     cat = next(c for c in DataManager.CATEGORIES if c["key"]==cat_key)
     col = cat["color"]
 
-    if st.button("← ホームに戻る"):
+    if st.button("← Back to Home"):
         st.session_state.page="home"; st.rerun()
 
-    st.markdown(f"""<h3><span class="cat-badge" style="background:{col};"></span>{cat['emoji']} {cat['label']}</h3>""", unsafe_allow_html=True)
+    st.markdown(f"""<h3><span class="cat-badge" style="background:{col};"></span>{cat['emoji']} {cat['en']} <span style="font-size:15px;color:#999;">{cat['label']}</span></h3>""", unsafe_allow_html=True)
 
     words = DataManager.get_words_by_category(cat_key)
     mastered = len([w for w in words if w.get("status")=="mastered"])
-    st.caption(f"{mastered} / {len(words)} 語マスター")
+    st.caption(f"{mastered} / {len(words)} mastered")
+
+    # 新規単語START（上部に配置）
+    new_words = [w for w in words if w.get("srs_level",0)==0 and w.get("learned_date") is None]
+    per_day = srs.load_state()["settings"]["new_words_per_day"]
+    todays = new_words[:per_day]
+
+    if todays:
+        st.markdown(f"**🆕 New words today: {len(todays)}**")
+        if st.button("🚀 START", use_container_width=True, type="primary"):
+            st.session_state.part1_queue=list(todays)
+            st.session_state.part1_index=0
+            st.session_state.part1_stage="preview"
+            st.session_state.part1_wrong=[]
+            st.session_state.answered=False
+            st.session_state.page="part1"; st.rerun()
+    else:
+        st.info("All new words in this category are done! 🎉")
+
+    st.divider()
+    st.caption("📋 Word list")
 
     # eiloカード一覧（進捗マーク付き）
     html = '<div class="eilo-grid">'
     for w in words:
         mark = srs.get_word_mark(w)
-        # マスターはカードが薄く色づく
         bg = "white"
         if w.get("status")=="mastered":
-            bg = f"{col}1a"  # 薄く
+            bg = f"{col}1a"
         html += f"""<div class="eilo-card" style="border-top-color:{col};background:{bg};">
             <div class="eilo-mark">{mark}</div>
             <div class="eilo-kana">{w.get('katakana','')}</div>
@@ -166,24 +196,6 @@ def render_category():
         </div>"""
     html += '</div>'
     st.markdown(html, unsafe_allow_html=True)
-
-    # 新規単語START
-    new_words = [w for w in words if w.get("srs_level",0)==0 and w.get("learned_date") is None]
-    per_day = srs.load_state()["settings"]["new_words_per_day"]
-    todays = new_words[:per_day]
-
-    st.divider()
-    if todays:
-        st.markdown(f"**🆕 今日学ぶ新規単語：{len(todays)}語**")
-        if st.button("🚀 新単語スタート", use_container_width=True, type="primary"):
-            st.session_state.part1_queue=list(todays)
-            st.session_state.part1_index=0
-            st.session_state.part1_stage="preview"
-            st.session_state.part1_wrong=[]
-            st.session_state.answered=False
-            st.session_state.page="part1"; st.rerun()
-    else:
-        st.info("このカテゴリーの新規単語はすべて学習しました！🎉")
 
 
 # ============================================================
@@ -208,7 +220,7 @@ def render_part1():
             return
         word = queue[idx]
         st.progress(idx/total if total else 0)
-        st.caption(f"📖 予習 {idx+1} / {total}")
+        st.caption(f"📖 Preview {idx+1} / {total}")
         ex_html=""
         for ex in word.get('examples',[]):
             ja = f'<div class="word-ex-ja">{ex["ja"]}</div>' if st.session_state.show_ja else ""
@@ -222,9 +234,9 @@ def render_part1():
         </div>""", unsafe_allow_html=True)
         c1,c2 = st.columns(2)
         with c1:
-            st.session_state.show_ja = st.toggle("例文の訳", value=st.session_state.show_ja)
+            st.session_state.show_ja = st.toggle("Show translation", value=st.session_state.show_ja)
         with c2:
-            label = "次へ →" if idx<total-1 else "4択クイズへ →"
+            label = "Next →" if idx<total-1 else "Quiz →"
             if st.button(label, use_container_width=True, type="primary"):
                 st.session_state.part1_index+=1; st.rerun()
         return
@@ -235,7 +247,7 @@ def render_part1():
             st.session_state.part1_queue=st.session_state.part1_wrong
             st.session_state.part1_wrong=[]
             st.session_state.part1_index=0
-            st.info("間違えた単語をもう一度！")
+            st.info("Let's retry the wrong words!")
             st.rerun()
         else:
             # Part1完了
@@ -244,7 +256,7 @@ def render_part1():
 
     word = queue[idx]
     st.progress(idx/total if total else 0)
-    st.caption(f"❓ 4択クイズ {idx+1} / {total}")
+    st.caption(f"❓ Quiz {idx+1} / {total}")
     st.markdown(f"""<div class="word-card" style="background:linear-gradient(135deg,{col},{col}cc);">
         <div class="word-kana">{word.get('katakana','')}</div>
         <div class="word-en">{word['english']}</div>
@@ -255,21 +267,21 @@ def render_part1():
     if ck not in st.session_state:
         ch,co=make_choices(word,all_words); st.session_state[ck]={"ch":ch,"co":co}
     ch=st.session_state[ck]["ch"]; co=st.session_state[ck]["co"]
-    st.markdown("**正しい意味は？**")
+    st.markdown("**What does it mean?**")
     if not st.session_state.answered:
         sel=st.radio("c",ch,key=f"p1r_{word['word_id']}_{idx}",label_visibility="collapsed")
-        if st.button("回答する",use_container_width=True,type="primary"):
+        if st.button("Answer",use_container_width=True,type="primary"):
             st.session_state.answered=True; st.session_state.last_correct=(sel==co); st.rerun()
     else:
         if st.session_state.last_correct:
-            st.success(f"✅ 正解！ {word['definition']}")
-            if st.button("次へ →",use_container_width=True,type="primary"):
+            st.success(f"✅ Correct! {word['definition']}")
+            if st.button("Next →",use_container_width=True,type="primary"):
                 srs.mark_new_learned(word['word_id'])
                 del st.session_state[ck]; st.session_state.part1_index+=1
                 st.session_state.answered=False; st.rerun()
         else:
-            st.error(f"❌ 不正解。正解は「{co}」")
-            if st.button("もう一度",use_container_width=True):
+            st.error(f"❌ Wrong. Answer: {co}")
+            if st.button("Retry",use_container_width=True):
                 if word not in st.session_state.part1_wrong: st.session_state.part1_wrong.append(word)
                 del st.session_state[ck]; st.session_state.part1_index+=1
                 st.session_state.answered=False; st.rerun()
@@ -290,7 +302,7 @@ def render_part2():
     word=queue[idx]; total=len(queue)
     col=color_for(word.get('category','other'))
     st.progress(idx/total if total else 0)
-    st.caption(f"🔁 記憶テスト {idx+1} / {total}")
+    st.caption(f"🔁 Memory Test {idx+1} / {total}")
     st.markdown(f"""<div class="word-card" style="background:linear-gradient(135deg,{col},{col}cc);">
         <div class="word-kana">{word.get('katakana','')}</div>
         <div class="word-en">{word['english']}</div>
@@ -300,21 +312,21 @@ def render_part2():
     if ck not in st.session_state:
         ch,co=make_choices(word,all_words); st.session_state[ck]={"ch":ch,"co":co}
     ch=st.session_state[ck]["ch"]; co=st.session_state[ck]["co"]
-    st.markdown("**正しい意味は？**")
+    st.markdown("**What does it mean?**")
     if not st.session_state.answered:
         sel=st.radio("c",ch,key=f"p2r_{word['word_id']}_{idx}",label_visibility="collapsed")
-        if st.button("回答する",use_container_width=True,type="primary"):
+        if st.button("Answer",use_container_width=True,type="primary"):
             st.session_state.answered=True; st.session_state.last_correct=(sel==co); st.rerun()
     else:
         if st.session_state.last_correct:
-            st.success(f"✅ 正解！ {word['definition']}")
-            if st.button("次へ →",use_container_width=True,type="primary"):
+            st.success(f"✅ Correct! {word['definition']}")
+            if st.button("Next →",use_container_width=True,type="primary"):
                 srs.mark_review_result(word['word_id'],True)
                 del st.session_state[ck]; st.session_state.part2_index+=1
                 st.session_state.answered=False; st.rerun()
         else:
-            st.error(f"❌ 不正解。正解は「{co}」")
-            if st.button("もう一度 →",use_container_width=True):
+            st.error(f"❌ Wrong. Answer: {co}")
+            if st.button("Retry →",use_container_width=True):
                 srs.mark_review_result(word['word_id'],False)
                 if word not in st.session_state.part2_wrong: st.session_state.part2_wrong.append(word)
                 del st.session_state[ck]; st.session_state.part2_index+=1
@@ -334,10 +346,10 @@ def render_complete():
         <div style="font-size:18px;color:#FF6B35;font-weight:700;">🔥 連続 {s['streak_current']}日</div>
         <div style="font-size:16px;color:#28B448;margin-top:8px;">⭐ マスター {s['mastered']}語</div>
     </div>""", unsafe_allow_html=True)
-    st.success("今日もよくがんばりました！")
-    if st.button("📅 カレンダー",use_container_width=True):
+    st.success("Great job today!")
+    if st.button("📅 Calendar",use_container_width=True):
         st.session_state.page="calendar"; st.rerun()
-    if st.button("🏠 ホームに戻る",use_container_width=True):
+    if st.button("🏠 Back to Home",use_container_width=True):
         st.session_state.page="home"; st.rerun()
 
 
@@ -345,26 +357,26 @@ def render_complete():
 # カレンダー
 # ============================================================
 def render_calendar():
-    st.markdown("### 📅 GAVI Calendar")
+    st.markdown("### 📅 Calendar")
     status_bar()
     y=st.session_state.cal_year; m=st.session_state.cal_month
     c1,c2,c3=st.columns([1,2,1])
     with c1:
-        if st.button("← 前月"):
+        if st.button("← Prev"):
             if m==1: st.session_state.cal_month=12; st.session_state.cal_year-=1
             else: st.session_state.cal_month-=1
             st.rerun()
     with c2:
-        st.markdown(f"<div style='text-align:center;font-size:18px;font-weight:700;'>{y}年 {m}月</div>",unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align:center;font-size:18px;font-weight:700;'>{y}/{m}</div>",unsafe_allow_html=True)
     with c3:
-        if st.button("次月 →"):
+        if st.button("Next →"):
             if m==12: st.session_state.cal_month=1; st.session_state.cal_year+=1
             else: st.session_state.cal_month+=1
             st.rerun()
     cd=srs.get_calendar(y,m)
     fw=(date(y,m,1).weekday()+1)%7
     html='<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;">'
-    for wd in ["日","月","火","水","木","金","土"]:
+    for wd in ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]:
         html+=f'<div style="font-size:11px;color:#999;padding:4px;">{wd}</div>'
     for _ in range(fw): html+='<div></div>'
     for d in cd["days"]:
@@ -376,9 +388,9 @@ def render_calendar():
         html+=f'<div style="background:{bg};border:{bd};border-radius:8px;padding:6px 2px;min-height:44px;"><div style="font-size:12px;font-weight:600;">{d["day"]}</div><div style="font-size:14px;">{em}</div></div>'
     html+='</div>'
     st.markdown(html,unsafe_allow_html=True)
-    st.caption("🔥 達成日　🇦🇺 オーストラリア留学　🎯 英検一次")
+    st.caption("🔥 Done　🇦🇺 Australia　🎯 Eiken")
     st.divider()
-    if st.button("🏠 ホームに戻る",use_container_width=True):
+    if st.button("🏠 Back to Home",use_container_width=True):
         st.session_state.page="home"; st.rerun()
 
 

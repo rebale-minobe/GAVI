@@ -229,14 +229,14 @@ class DataManager:
     # カテゴリー（品詞）管理
     # ============================================================
 
-    # カテゴリー定義（表示順・ラベル・絵文字・eiloカラー）
+    # カテゴリー定義（表示順・ラベル・絵文字・eiloカラー・英語名）
     CATEGORIES = [
-        {"key": "verb",      "label": "動詞",   "emoji": "📗", "color": "#E03131"},  # 赤
-        {"key": "noun",      "label": "名詞",   "emoji": "📘", "color": "#ADB5BD"},  # 薄グレー
-        {"key": "adjective", "label": "形容詞", "emoji": "📙", "color": "#4DABF7"},  # 水色
-        {"key": "adverb",    "label": "副詞",   "emoji": "📕", "color": "#4DABF7"},  # 水色（形容詞と同系）
-        {"key": "idiom",     "label": "熟語",   "emoji": "🔗", "color": "#37B24D"},  # 緑
-        {"key": "other",     "label": "その他", "emoji": "📦", "color": "#F59F00"},  # 黄
+        {"key": "verb",      "label": "動詞",   "en": "Verbs",      "emoji": "📗", "color": "#E03131"},
+        {"key": "noun",      "label": "名詞",   "en": "Nouns",      "emoji": "📘", "color": "#ADB5BD"},
+        {"key": "adjective", "label": "形容詞", "en": "Adjectives", "emoji": "📙", "color": "#4DABF7"},
+        {"key": "adverb",    "label": "副詞",   "en": "Adverbs",    "emoji": "📕", "color": "#4DABF7"},
+        {"key": "idiom",     "label": "熟語",   "en": "Idioms",     "emoji": "🔗", "color": "#37B24D"},
+        {"key": "other",     "label": "その他", "en": "Others",     "emoji": "📦", "color": "#F59F00"},
     ]
 
     @staticmethod
@@ -277,6 +277,7 @@ class DataManager:
             result.append({
                 "key": cat["key"],
                 "label": cat["label"],
+                "en": cat["en"],
                 "emoji": cat["emoji"],
                 "color": cat["color"],
                 "mastered": mastered,
