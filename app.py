@@ -18,16 +18,16 @@ from data_manager import DataManager
 
 ASSET_DIR = Path(__file__).parent / "assets" / "characters"
 
-# カテゴリー → モンスター割り当て
+# カテゴリー → モンスター割り当て（全て別キャラ）
 CATEGORY_MONSTER = {
-    "verb": "gavi6.svg",       # 赤
-    "noun": "gavi8.svg",       # オレンジ（グレーなしのため暫定）
-    "adjective": "gavi1.svg",  # 水色
-    "adverb": "gavi5.svg",     # 水色
-    "idiom": "gavi3.svg",      # 黄緑
-    "other": "gavi2.svg",      # 黄
+    "verb": "gavi6.svg",        # 赤
+    "noun": "gavi13.svg",       # 紫（グレーなしのため）
+    "adjective": "gavi1.svg",   # 水色
+    "adverb": "gavi5.svg",      # 水色（別キャラ）
+    "idiom": "gavi3.svg",       # 黄緑
+    "other": "gavi2.svg",       # 黄
 }
-MASCOT = "gavi1.svg"  # GAVIマスコット（青モンスター）
+MASCOT = "gavi8.svg"  # GAVIマスコット（オレンジ・舌出し）
 
 @st.cache_data
 def load_svg(filename: str) -> str:
@@ -57,7 +57,7 @@ def celebrate_monster(cat_key: str):
         <div style="font-size:22px;font-weight:800;color:#58cc02;margin-top:4px;">{msg}</div>
     </div>""", unsafe_allow_html=True)
 
-APP_VERSION = "v2026-06-19.011-deco3"
+APP_VERSION = "v2026-06-19.012-chars"
 
 st.set_page_config(page_title="GAVI", page_icon="🌈", layout="centered", initial_sidebar_state="collapsed")
 
@@ -165,9 +165,9 @@ init_session()
 
 def status_bar():
     s = srs.get_progress_summary()
-    streak_char = monster_img("gavi6.svg", size=36)
-    master_char = monster_img("gavi2.svg", size=36)
-    exam_char = monster_img("gavi1.svg", size=36)
+    streak_char = monster_img("gavi11.svg", size=36)  # 赤（別キャラ）
+    master_char = monster_img("gavi10.svg", size=36)  # 黄（別キャラ）
+    exam_char = monster_img("gavi7.svg", size=36)     # 水色（別キャラ）
     st.markdown(f"""<div class="stat-bar">
         <div class="stat-item"><div style="display:flex;align-items:center;justify-content:center;gap:6px;">{streak_char}<span class="stat-value" style="color:#FF6B35;">{s['streak_current']}</span></div><div class="stat-label">連続日数</div></div>
         <div class="stat-item"><div style="display:flex;align-items:center;justify-content:center;gap:6px;">{master_char}<span class="stat-value" style="color:#28B448;">{s['mastered']}</span></div><div class="stat-label">マスター</div></div>
