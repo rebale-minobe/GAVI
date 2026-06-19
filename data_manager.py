@@ -154,7 +154,7 @@ class DataManager:
                 return json.load(f)
         except FileNotFoundError:
             return {
-                "user_id": "ria_minobe",
+                "user_id": "user01",
                 "current_phase": 1,
                 "phase_start_date": datetime.now().isoformat(),
                 "statistics": {
@@ -224,7 +224,71 @@ class DataManager:
             stats["mastered_percentage"] = 0
         
         return stats
-    
+
+    # ============================================================
+    # カテゴリー（品詞）管理
+    # ============================================================
+
+    # カテゴリー定義（表示順・ラベル・絵文字）
+    CATEGORIES = [
+        {"key": "verb",      "label": "動詞",   "emoji": "📗"},
+        {"key": "noun",      "label": "名詞",   "emoji": "📘"},
+        {"key": "adjective", "label": "形容詞", "emoji": "📙"},
+        {"key": "adverb",    "label": "副詞",   "emoji": "📕"},
+        {"key": "idiom",     "label": "熟語",   "emoji": "🔗"},
+        {"key": "other",     "label": "その他", "emoji": "📦"},
+    ]
+
+    @staticmethod
+    def get_words_by_category(category_key: str) -> List[Dict]:
+        """
+        指定カテゴリーの単語をすべて取得
+
+        Args:
+            category_key (str): "verb" / "noun" / ...
+
+        Returns:
+            List[Dict]: 該当カテゴリーの単語リスト
+        """
+        words = DataManager.load_words()
+        return [w for w in words if w.get("category", "other") == category_key]
+
+    @staticmethod
+    def get_category_progress() -> List[Dict]:
+        """
+        カテゴリーごとの進捗（マスター数 / 総数）を集計
+
+        Returns:
+            List[Dict]: [{key, label, emoji, mastered, total}, ...]
+        """
+        words = DataManager.load_words()
+        result = []
+        for cat in DataManager.CATEGORIES:
+            cat_words = [w for w in words if w.get("category", "other") == cat["key"]]
+            mastered = len([w for w in cat_words if w["status"] == "mastered"])
+            result.append({
+                "key": cat["key"],
+                "label": cat["label"],
+                "emoji": cat["emoji"],
+                "mastered": mastered,
+                "total": len(cat_words),
+            })
+        return result
+
+    @staticmethod
+    def get_overall_progress() -> Dict:
+        """
+        全体の進捗（マスター数 / 総数 / パーセント）
+
+        Returns:
+            Dict: {mastered, total, percentage}
+        """
+        words = DataManager.load_words()
+        total = len(words)
+        mastered = len([w for w in words if w["status"] == "mastered"])
+        percentage = round((mastered / total) * 100, 1) if total > 0 else 0
+        return {"mastered": mastered, "total": total, "percentage": percentage}
+
     # ============================================================
     # ライティング記録
     # ============================================================

@@ -14,7 +14,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "adjective"
     },
     {
       "word_id": "0002",
@@ -30,7 +31,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "verb"
     },
     {
       "word_id": "0003",
@@ -46,7 +48,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "verb"
     },
     {
       "word_id": "0004",
@@ -62,7 +65,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "verb"
     },
     {
       "word_id": "0005",
@@ -78,7 +82,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "other"
     },
     {
       "word_id": "0006",
@@ -94,7 +99,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "noun"
     },
     {
       "word_id": "0007",
@@ -110,7 +116,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "noun"
     },
     {
       "word_id": "0008",
@@ -126,7 +133,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "verb"
     },
     {
       "word_id": "0009",
@@ -142,7 +150,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "verb"
     },
     {
       "word_id": "0010",
@@ -158,7 +167,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "verb"
     },
     {
       "word_id": "0011",
@@ -174,7 +184,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "noun"
     },
     {
       "word_id": "0012",
@@ -190,7 +201,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "noun"
     },
     {
       "word_id": "0013",
@@ -206,7 +218,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "noun"
     },
     {
       "word_id": "0014",
@@ -222,7 +235,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "adjective"
     },
     {
       "word_id": "0015",
@@ -238,7 +252,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "verb"
     },
     {
       "word_id": "0016",
@@ -254,7 +269,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "adjective"
     },
     {
       "word_id": "0017",
@@ -270,7 +286,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "adjective"
     },
     {
       "word_id": "0018",
@@ -286,7 +303,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "verb"
     },
     {
       "word_id": "0019",
@@ -302,7 +320,8 @@
       "quiz_attempts": 0,
       "translation_attempts": 0,
       "incorrect_count": 0,
-      "created_date": "2026-06-19T00:00:00Z"
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "noun"
     },
     {
       "word_id": "0020",
@@ -313,6 +332,143 @@
         "We need to improve our service.",
         "His English has improved a lot."
       ],
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z",
+      "category": "verb"
+    },
+    {
+      "word_id": "0021",
+      "english": "recently",
+      "phonetic": "/ˈriː.sənt.li/",
+      "definition": "最近、近頃",
+      "examples": [
+        "I recently moved to Tokyo.",
+        "She has recently started a new job."
+      ],
+      "category": "adverb",
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0022",
+      "english": "probably",
+      "phonetic": "/ˈprɒb.ə.bli/",
+      "definition": "おそらく、たぶん",
+      "examples": [
+        "It will probably rain tomorrow.",
+        "He is probably at home now."
+      ],
+      "category": "adverb",
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0023",
+      "english": "actually",
+      "phonetic": "/ˈæk.tʃu.ə.li/",
+      "definition": "実際は、本当は",
+      "examples": [
+        "Actually, I disagree with you.",
+        "It's actually quite simple."
+      ],
+      "category": "adverb",
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0024",
+      "english": "look forward to",
+      "phonetic": "/lʊk ˈfɔːr.wərd tuː/",
+      "definition": "～を楽しみに待つ",
+      "examples": [
+        "I look forward to seeing you.",
+        "We look forward to your reply."
+      ],
+      "category": "idiom",
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0025",
+      "english": "in order to",
+      "phonetic": "/ɪn ˈɔːr.dər tuː/",
+      "definition": "～するために",
+      "examples": [
+        "I study hard in order to pass.",
+        "She left early in order to catch the train."
+      ],
+      "category": "idiom",
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0026",
+      "english": "as well as",
+      "phonetic": "/æz wel æz/",
+      "definition": "～と同様に、～だけでなく",
+      "examples": [
+        "He speaks French as well as English.",
+        "She is kind as well as smart."
+      ],
+      "category": "idiom",
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0027",
+      "english": "although",
+      "phonetic": "/ɔːlˈðoʊ/",
+      "definition": "～だけれども、～にもかかわらず",
+      "examples": [
+        "Although it was raining, we went out.",
+        "Although he is young, he is wise."
+      ],
+      "category": "other",
+      "status": "new",
+      "phase": 1,
+      "quiz_attempts": 0,
+      "translation_attempts": 0,
+      "incorrect_count": 0,
+      "created_date": "2026-06-19T00:00:00Z"
+    },
+    {
+      "word_id": "0028",
+      "english": "however",
+      "phonetic": "/haʊˈev.ər/",
+      "definition": "しかしながら、けれども",
+      "examples": [
+        "It's expensive. However, it's worth it.",
+        "However, there is a problem."
+      ],
+      "category": "other",
       "status": "new",
       "phase": 1,
       "quiz_attempts": 0,

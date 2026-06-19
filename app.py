@@ -7,6 +7,7 @@ MVP Version 1.0
 
 import streamlit as st
 import json
+import random
 from datetime import datetime, timedelta
 from data_manager import DataManager
 from claude_api import (
@@ -172,6 +173,9 @@ if "current_page" not in st.session_state:
 if "word_index" not in st.session_state:
     st.session_state.word_index = 0
 
+if "selected_category" not in st.session_state:
+    st.session_state.selected_category = "verb"
+
 # ============================================================
 # ホーム画面
 # ============================================================
@@ -306,21 +310,97 @@ def render_home():
                 st.rerun()
 
 # ============================================================
+# 単語学習：カテゴリー選択画面
+# ============================================================
+
+def render_vocabulary_categories():
+    """単語学習のカテゴリー（品詞）選択画面"""
+
+    st.markdown("## 📖 Vocabulary")
+    st.markdown("カテゴリーを選んで学習しましょう")
+
+    # 全体進捗
+    overall = DataManager.get_overall_progress()
+    st.markdown(f"""
+    <div style="
+        background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        color: white;
+        margin-bottom: 24px;
+    ">
+        <div style="font-size: 12px; opacity: 0.9; margin-bottom: 6px;">🏆 全体の進捗</div>
+        <div style="font-size: 32px; font-weight: 700;">{overall['mastered']} / {overall['total']} 語</div>
+        <div style="font-size: 14px; opacity: 0.9;">マスター率 {overall['percentage']}%</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # 全体プログレスバー
+    st.progress(overall['percentage'] / 100 if overall['total'] > 0 else 0)
+    st.markdown("---")
+
+    # カテゴリーごとのカード（2列）
+    categories = DataManager.get_category_progress()
+    cols = st.columns(2)
+    for i, cat in enumerate(categories):
+        with cols[i % 2]:
+            pct = round((cat['mastered'] / cat['total']) * 100) if cat['total'] > 0 else 0
+            # カード表示
+            st.markdown(f"""
+            <div style="
+                background: white;
+                border: 1px solid #e8e8e8;
+                border-radius: 12px;
+                padding: 16px;
+                margin-bottom: 8px;
+            ">
+                <div style="font-size: 16px; font-weight: 600; margin-bottom: 6px;">
+                    {cat['emoji']} {cat['label']}
+                </div>
+                <div style="font-size: 13px; color: #4A90E2; font-weight: 600; margin-bottom: 8px;">
+                    {cat['mastered']} / {cat['total']} 語 ({pct}%)
+                </div>
+                <div style="height: 6px; background: #f0f0f0; border-radius: 3px; overflow: hidden;">
+                    <div style="height: 100%; background: #4A90E2; width: {pct}%; border-radius: 3px;"></div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            # 学習開始ボタン
+            disabled = cat['total'] == 0
+            btn_label = f"{cat['label']}を学習" if not disabled else "単語なし"
+            if st.button(btn_label, key=f"cat_{cat['key']}", use_container_width=True, disabled=disabled):
+                st.session_state.selected_category = cat['key']
+                st.session_state.word_index = 0
+                st.session_state.current_page = "vocabulary_step1"
+                st.rerun()
+
+    st.markdown("---")
+    if st.button("ホームに戻る", use_container_width=True, key="cat_home"):
+        st.session_state.current_page = "home"
+        st.rerun()
+
+
+# ============================================================
 # 単語学習画面（Step 1）
 # ============================================================
 
 def render_vocabulary_step1():
     """単語学習 Step 1：意味・発音"""
     
-    st.markdown("## 📖 Vocabulary Learning - Step 1")
+    # カテゴリー名を取得
+    cat_key = st.session_state.get("selected_category", "verb")
+    cat_label = next((c["label"] for c in DataManager.CATEGORIES if c["key"] == cat_key), "")
+
+    st.markdown(f"## 📖 Vocabulary - Step 1 ({cat_label})")
     st.markdown("意味と発音を覚えましょう")
     
-    # 単語を取得
-    words = DataManager.get_word_by_status("new")
+    # 選択カテゴリーの未学習単語を取得
+    words = [w for w in DataManager.get_words_by_category(cat_key) if w["status"] == "new"]
     if not words:
-        st.warning("学習する単語がありません！")
-        if st.button("ホームに戻る"):
-            st.session_state.current_page = "home"
+        st.success(f"🎉 {cat_label}の未学習単語はすべて完了しました！")
+        if st.button("カテゴリー選択に戻る"):
+            st.session_state.current_page = "vocabulary"
             st.rerun()
         return
     
@@ -378,8 +458,8 @@ def render_vocabulary_step1():
             st.rerun()
     
     with col2:
-        if st.button("ホームに戻る", use_container_width=True):
-            st.session_state.current_page = "home"
+        if st.button("カテゴリー選択に戻る", use_container_width=True, key="step1_back"):
+            st.session_state.current_page = "vocabulary"
             st.rerun()
     
     with col3:
@@ -393,26 +473,28 @@ def render_vocabulary_step1():
 
 def render_vocabulary_step2():
     """単語学習 Step 2：4択クイズ"""
-    
-    st.markdown("## ❓ Vocabulary Learning - Step 2")
+
+    cat_key = st.session_state.get("selected_category", "verb")
+    cat_label = next((c["label"] for c in DataManager.CATEGORIES if c["key"] == cat_key), "")
+
+    st.markdown(f"## ❓ Vocabulary - Step 2 ({cat_label})")
     st.markdown("正しい和訳を選びましょう")
-    
-    # 単語を取得
-    words = DataManager.get_word_by_status("quiz_pending")
+
+    # 選択カテゴリーの quiz_pending 単語を取得
+    cat_words = DataManager.get_words_by_category(cat_key)
+    words = [w for w in cat_words if w["status"] == "quiz_pending"]
     if not words:
-        # quiz_pending がなければ new から取得
-        words = DataManager.get_word_by_status("new")
-        if words:
-            word = words[st.session_state.word_index % len(words)]
-        else:
-            st.warning("学習する単語がありません！")
-            if st.button("ホームに戻る"):
-                st.session_state.current_page = "home"
+        words = [w for w in cat_words if w["status"] == "new"]
+        if not words:
+            st.success(f"🎉 {cat_label}のクイズ対象単語はありません！")
+            if st.button("カテゴリー選択に戻る"):
+                st.session_state.current_page = "vocabulary"
                 st.rerun()
             return
-    else:
-        word = words[st.session_state.word_index % len(words)]
-    
+
+    word = words[st.session_state.word_index % len(words)]
+    correct = word['definition'].split('、')[0]
+
     st.markdown(f"""
     <div style="
         background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
@@ -427,34 +509,55 @@ def render_vocabulary_step2():
         </div>
     </div>
     """, unsafe_allow_html=True)
-    
+
     st.markdown("### 正しい和訳を選んでください")
-    
-    # 4択選択肢（簡略版：正答のみ表示）
-    choices = [
-        word['definition'].split('、')[0],
-        "古い",
-        "美しい",
-        "簡単な"
-    ]
-    
+
+    # 4択選択肢を「同カテゴリーの他の単語」からランダム生成
+    # （選択肢は単語ごとに固定するため session_state にキャッシュ）
+    choice_key = f"choices_{word['word_id']}"
+    if choice_key not in st.session_state:
+        # 他の単語の意味（先頭の訳）を集める
+        others = [
+            w['definition'].split('、')[0]
+            for w in DataManager.load_words()
+            if w['word_id'] != word['word_id']
+        ]
+        # 正答と重複しないものだけ
+        others = list({o for o in others if o != correct})
+        random.shuffle(others)
+        distractors = others[:3]
+        # もし他カテゴリー含めても3つ足りない場合の予備
+        filler = ["古い", "新しい", "大きい", "小さい", "速い", "遅い"]
+        while len(distractors) < 3:
+            f = random.choice(filler)
+            if f != correct and f not in distractors:
+                distractors.append(f)
+        choices = distractors + [correct]
+        random.shuffle(choices)
+        st.session_state[choice_key] = choices
+
+    choices = st.session_state[choice_key]
+
     selected = st.radio(
         "選択肢：",
         choices,
-        key=f"quiz_{word['word_id']}"
+        key=f"quiz_radio_{word['word_id']}"
     )
-    
+
     if st.button("回答する", use_container_width=True, key="submit_quiz"):
-        if selected == choices[0]:
+        if selected == correct:
             st.success("✅ 正解！")
-            st.markdown(f"**フィードバック:** {word['definition']}は準2級で頻出です。")
-            
+            st.markdown(f"**フィードバック:** {word['definition']}")
+
             if st.button("次へ進む", use_container_width=True, key="next_step2"):
                 DataManager.update_word_status(
                     word['word_id'],
                     "translation_pending",
                     {"quiz_attempts": 1}
                 )
+                # 選択肢キャッシュをクリア
+                if choice_key in st.session_state:
+                    del st.session_state[choice_key]
                 st.session_state.current_page = "vocabulary_step3"
                 st.rerun()
         else:
@@ -462,8 +565,8 @@ def render_vocabulary_step2():
     
     # ナビゲーション
     st.divider()
-    if st.button("ホームに戻る", use_container_width=True):
-        st.session_state.current_page = "home"
+    if st.button("カテゴリー選択に戻る", use_container_width=True, key="step2_back"):
+        st.session_state.current_page = "vocabulary"
         st.rerun()
 
 # ============================================================
@@ -472,24 +575,24 @@ def render_vocabulary_step2():
 
 def render_vocabulary_step3():
     """単語学習 Step 3：英→日訳"""
-    
-    st.markdown("## 📝 Vocabulary Learning - Step 3")
+
+    cat_key = st.session_state.get("selected_category", "verb")
+    cat_label = next((c["label"] for c in DataManager.CATEGORIES if c["key"] == cat_key), "")
+
+    st.markdown(f"## 📝 Vocabulary - Step 3 ({cat_label})")
     st.markdown("英語を日本語に訳してください")
-    
-    # 単語を取得
-    words = DataManager.get_word_by_status("translation_pending")
+
+    # 選択カテゴリーの translation_pending 単語を取得
+    cat_words = DataManager.get_words_by_category(cat_key)
+    words = [w for w in cat_words if w["status"] == "translation_pending"]
     if not words:
-        words = DataManager.load_words()
-        if words:
-            word = words[0]
-        else:
-            st.warning("学習する単語がありません！")
-            if st.button("ホームに戻る"):
-                st.session_state.current_page = "home"
-                st.rerun()
-            return
-    else:
-        word = words[st.session_state.word_index % len(words)]
+        st.success(f"🎉 {cat_label}の訳問題はありません！")
+        if st.button("カテゴリー選択に戻る"):
+            st.session_state.current_page = "vocabulary"
+            st.rerun()
+        return
+
+    word = words[st.session_state.word_index % len(words)]
     
     st.markdown(f"""
     <div style="
@@ -527,13 +630,15 @@ def render_vocabulary_step3():
             st.markdown(f"**スコア:** {eval_result.get('score', 0)}/100")
             st.markdown(f"**フィードバック:** {eval_result.get('feedback', '')}")
             
-            if st.button("マスター完了！", use_container_width=True, key="mastered"):
+            if st.button("マスター完了！次の単語へ", use_container_width=True, key="mastered"):
                 DataManager.update_word_status(
                     word['word_id'],
                     "mastered",
                     {"translation_attempts": 1}
                 )
-                st.session_state.current_page = "home"
+                # 次の単語のため index リセット、カテゴリー選択画面で進捗確認
+                st.session_state.word_index = 0
+                st.session_state.current_page = "vocabulary"
                 st.rerun()
         else:
             st.error("❌ 不正解。もう一度チャレンジしてください。")
@@ -541,8 +646,8 @@ def render_vocabulary_step3():
     
     # ナビゲーション
     st.divider()
-    if st.button("ホームに戻る", use_container_width=True):
-        st.session_state.current_page = "home"
+    if st.button("カテゴリー選択に戻る", use_container_width=True, key="step3_back"):
+        st.session_state.current_page = "vocabulary"
         st.rerun()
 
 # ============================================================
@@ -555,7 +660,7 @@ def main():
     if st.session_state.current_page == "home":
         render_home()
     elif st.session_state.current_page == "vocabulary":
-        render_vocabulary_step1()
+        render_vocabulary_categories()
     elif st.session_state.current_page == "vocabulary_step1":
         render_vocabulary_step1()
     elif st.session_state.current_page == "vocabulary_step2":
