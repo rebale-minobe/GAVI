@@ -1,6 +1,6 @@
 {
-  "user_id": "ria_minobe",
-  "user_name": "莉亜",
+  "user_id": "user01",
+  "user_name": "Student",
   "current_phase": 1,
   "phase_start_date": "2026-06-18T00:00:00Z",
   "phase_end_date": "2026-08-12T23:59:59Z",
@@ -80,13 +80,13 @@
   },
   "personal_info": {
     "grade": "中2",
-    "school": "横浜国際高校受験予定",
+    
     "target_score": 60,
     "target_grade": "A",
     "interests": [
-      "推し（Kpop）",
-      "ファッション",
-      "海外文化"
+      "music",
+      "fashion",
+      "global culture"
     ]
   },
   "created_date": "2026-06-19T00:00:00Z",

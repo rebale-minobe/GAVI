@@ -164,7 +164,7 @@ st.markdown("""
 # ============================================================
 
 if "user_id" not in st.session_state:
-    st.session_state.user_id = "ria_minobe"
+    st.session_state.user_id = "user01"
 
 if "current_page" not in st.session_state:
     st.session_state.current_page = "home"
