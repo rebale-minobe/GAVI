@@ -14,40 +14,84 @@ from datetime import date
 import srs_engine as srs
 from data_manager import DataManager
 
-APP_VERSION = "v2026-06-19.003-eilo"
+APP_VERSION = "v2026-06-19.004-duo"
 
 st.set_page_config(page_title="GAVI", page_icon="🌈", layout="centered", initial_sidebar_state="collapsed")
 
 st.markdown("""
 <style>
-    .main { background: linear-gradient(180deg,#ffffff 0%,#f8f9fa 100%); }
-    .stat-bar { display:flex; justify-content:space-around; background:white; border:1px solid #e8e8e8; border-radius:16px; padding:16px; margin-bottom:20px; }
+    /* Duolingo風フォント Nunito を読み込み */
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+    html, body, [class*="css"], .stApp, .main, p, div, span, label, button, input {
+        font-family: 'Nunito', 'Hiragino Sans', sans-serif !important;
+    }
+
+    .main { background: #ffffff; }
+    .block-container { padding-top: 2rem; max-width: 720px; }
+
+    /* 見出しを大きく丸く */
+    h1, h2, h3 { font-weight: 800 !important; letter-spacing: -0.5px; }
+    h3 { font-size: 26px !important; }
+
+    /* ステータスバー */
+    .stat-bar { display:flex; justify-content:space-around; background:white; border:2px solid #e5e5e5; border-radius:20px; padding:18px; margin-bottom:24px; }
     .stat-item { text-align:center; }
-    .stat-value { font-size:28px; font-weight:700; line-height:1; }
-    .stat-label { font-size:11px; color:#999; margin-top:4px; }
-    /* eiloカード */
-    .eilo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:10px; margin:16px 0; }
-    .eilo-card { background:white; border-radius:12px; border-top:4px solid #ccc; padding:14px 8px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,0.08); position:relative; }
-    .eilo-kana { font-size:11px; color:#aaa; margin-bottom:2px; }
-    .eilo-en { font-size:20px; font-weight:700; color:#1a1a1a; }
-    .eilo-ja { font-size:12px; color:#888; margin-top:2px; }
-    .eilo-mark { position:absolute; top:6px; right:8px; font-size:14px; }
-    /* 学習カード（大） */
-    .word-card { border-radius:20px; padding:36px 28px; text-align:center; color:white; margin-bottom:20px; }
-    .word-kana { font-size:14px; opacity:0.8; margin-bottom:4px; }
-    .word-en { font-size:42px; font-weight:700; margin-bottom:8px; }
-    .word-phonetic { font-size:15px; opacity:0.85; font-style:italic; margin-bottom:16px; }
-    .word-def { font-size:17px; background:rgba(0,0,0,0.15); padding:14px; border-radius:12px; margin-bottom:12px; }
-    .word-ex { font-size:13px; text-align:left; background:rgba(255,255,255,0.15); padding:12px; border-radius:10px; margin-top:8px; line-height:1.6; }
-    .word-ex-ja { opacity:0.8; font-size:12px; }
-    .mission-card { background:white; border:1px solid #e8e8e8; border-radius:16px; padding:20px; margin-bottom:12px; }
-    .mission-row { display:flex; justify-content:space-between; align-items:center; padding:8px 0; }
-    .mission-label { font-size:15px; font-weight:600; }
-    .mission-num { font-size:20px; font-weight:700; color:#4A90E2; }
-    .cat-badge { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:middle; }
-    /* primary buttonをGAVI青に統一 */
-    .stButton > button[kind="primary"] { background:#4A90E2; border:none; }
-    .stButton > button[kind="primary"]:hover { background:#357ABD; }
+    .stat-value { font-size:34px; font-weight:900; line-height:1; }
+    .stat-label { font-size:13px; color:#afafaf; margin-top:6px; font-weight:700; }
+
+    /* eiloカード（大きく・丸く・立体） */
+    .eilo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; margin:18px 0; }
+    .eilo-card { background:white; border-radius:18px; border:2px solid #e5e5e5; border-top:6px solid #ccc; padding:18px 10px; text-align:center; box-shadow:0 4px 0 #e5e5e5; position:relative; }
+    .eilo-kana { font-size:12px; color:#bbb; margin-bottom:3px; font-weight:700; }
+    .eilo-en { font-size:24px; font-weight:800; color:#3c3c3c; }
+    .eilo-ja { font-size:14px; color:#777; margin-top:3px; font-weight:600; }
+    .eilo-mark { position:absolute; top:8px; right:10px; font-size:18px; }
+
+    /* 学習カード（特大） */
+    .word-card { border-radius:28px; padding:44px 30px; text-align:center; color:white; margin-bottom:24px; box-shadow:0 6px 0 rgba(0,0,0,0.15); }
+    .word-kana { font-size:18px; opacity:0.9; margin-bottom:6px; font-weight:700; }
+    .word-en { font-size:54px; font-weight:900; margin-bottom:10px; letter-spacing:-1px; }
+    .word-phonetic { font-size:18px; opacity:0.9; margin-bottom:20px; font-weight:600; }
+    .word-def { font-size:22px; font-weight:800; background:rgba(0,0,0,0.18); padding:18px; border-radius:18px; margin-bottom:14px; }
+    .word-ex { font-size:15px; text-align:left; background:rgba(255,255,255,0.18); padding:14px 16px; border-radius:14px; margin-top:10px; line-height:1.7; font-weight:600; }
+    .word-ex-ja { opacity:0.85; font-size:14px; }
+
+    /* ミッションカード */
+    .mission-card { background:white; border:2px solid #e5e5e5; border-radius:20px; padding:22px; margin-bottom:14px; box-shadow:0 4px 0 #e5e5e5; }
+    .mission-row { display:flex; justify-content:space-between; align-items:center; padding:6px 0; }
+    .mission-label { font-size:18px; font-weight:800; }
+    .mission-num { font-size:24px; font-weight:900; color:#1cb0f6; }
+    .cat-badge { display:inline-block; width:16px; height:16px; border-radius:5px; margin-right:8px; vertical-align:middle; }
+
+    /* ボタンを Duolingo 風に（大きく・丸く・立体・押すと沈む） */
+    .stButton > button {
+        font-family:'Nunito',sans-serif !important;
+        font-size:18px !important; font-weight:800 !important;
+        border-radius:16px !important; padding:14px 20px !important;
+        border:2px solid #e5e5e5 !important;
+        box-shadow:0 4px 0 #e5e5e5 !important;
+        transition:all 0.1s !important;
+        letter-spacing:0.3px;
+    }
+    .stButton > button:active {
+        transform:translateY(4px) !important;
+        box-shadow:0 0 0 #e5e5e5 !important;
+    }
+    /* primary button = GAVI青 立体 */
+    .stButton > button[kind="primary"] {
+        background:#1cb0f6 !important; color:white !important;
+        border:2px solid #1899d6 !important;
+        box-shadow:0 5px 0 #1899d6 !important;
+        font-size:20px !important; padding:16px 20px !important;
+    }
+    .stButton > button[kind="primary"]:active {
+        transform:translateY(5px) !important;
+        box-shadow:0 0 0 #1899d6 !important;
+    }
+    /* ラジオ選択肢を大きく */
+    .stRadio label { font-size:18px !important; font-weight:700 !important; }
+    .stRadio > div { gap:10px !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -96,7 +140,7 @@ def make_choices(word, all_words):
 # ホーム（カテゴリーボタン）
 # ============================================================
 def render_home():
-    st.markdown('<div style="font-size:32px;font-weight:700;background:linear-gradient(135deg,#4A90E2,#28B448,#FF6B35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🌈 GAVI</div>', unsafe_allow_html=True)
+    st.markdown('<div style="font-size:44px;font-weight:900;background:linear-gradient(135deg,#1cb0f6,#58cc02,#ff9600);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🌈 GAVI</div>', unsafe_allow_html=True)
     st.caption("Learn English, Enjoy the World")
     status_bar()
     st.markdown("### 👋 Hello, Ria!")
@@ -133,9 +177,9 @@ def render_home():
     for i,c in enumerate(cats):
         with cols[i%2]:
             col = c['color']
-            st.markdown(f"""<div data-cat="{c['key']}" style="border-left:5px solid {col};background:white;border:1px solid #eee;border-radius:10px;padding:10px 14px;margin-bottom:4px;">
-                <span style="font-weight:600;">{c['emoji']} {c['en']} <span style="font-size:12px;color:#999;">{c['label']}</span></span>
-                <span style="float:right;color:{col};font-weight:700;">{c['mastered']}/{c['total']}</span></div>""", unsafe_allow_html=True)
+            st.markdown(f"""<div data-cat="{c['key']}" style="border-left:8px solid {col};background:white;border:2px solid #e5e5e5;border-radius:18px;padding:16px 18px;margin-bottom:6px;box-shadow:0 4px 0 #e5e5e5;">
+                <span style="font-weight:800;font-size:20px;">{c['emoji']} {c['en']} <span style="font-size:14px;color:#aaa;font-weight:600;">{c['label']}</span></span>
+                <span style="float:right;color:{col};font-weight:900;font-size:20px;">{c['mastered']}/{c['total']}</span></div>""", unsafe_allow_html=True)
             if st.button(f"Learn {c['en']} →", key=f"catbtn_{c['key']}", use_container_width=True):
                 st.session_state.active_category=c['key']; st.session_state.page="category"; st.rerun()
 
